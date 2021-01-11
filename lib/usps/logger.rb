@@ -6,7 +6,7 @@ module Usps
     def self.default
       return @default if @default
 
-      logger = new STDOUT
+      logger = new $stdout
       logger.level = Logger::WARN
       @default = logger
     end

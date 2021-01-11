@@ -9,14 +9,14 @@ module Usps
   module Api
     module Endpoints
 <% files.each do |f| %>
-        include <%= f[:module] %>
+      include <%= f[:module] %>
 <% end %>
 
-		ACTIONS = {
+      ACTIONS = {
 <% files.each do |f| %>
-			<%= f[:file] %>: '<%= f[:module] %>',
+        <%= f[:file] %>: '<%= f[:module] %>',
 <% end %>
-		}
+      }
 
     end
   end

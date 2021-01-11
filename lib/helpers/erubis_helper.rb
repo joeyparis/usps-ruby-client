@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ErubisHelper
   def self.tabs(amount = 1)
     (0..amount).map { "\t" }.join

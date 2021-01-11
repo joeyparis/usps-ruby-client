@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'amazing_print'
 require 'nokogiri'
 require 'erubis'
@@ -36,7 +37,7 @@ namespace :usps do
 
       def standardize_table_hash_array(arr)
         arr.map do |option|
-          next if option['Tag Name'].split('/').pop.strip.downcase == 'userid'
+          next if option['Tag Name'].split('/').pop.strip.casecmp('userid').zero?
 
           {
             type: option['Type'],
@@ -51,16 +52,16 @@ namespace :usps do
         shape = {}
 
         nesting = []
-        arr[0][:type] = '(Alias)' if arr[0][:type].downcase != '(alias)'
+        arr[0][:type] = '(Alias)' unless arr[0][:type].casecmp('(alias)').zero?
         arr.each do |tag|
-          if tag[:type].downcase == '(alias)'
+          if tag[:type].casecmp('(alias)').zero?
             if nesting.last == tag[:name]
               nesting.pop
             else
               nesting.push(tag[:name])
               dig_set(shape, nesting, tag.merge(children: {}))
             end
-          elsif tag[:type].downcase == '(group)'
+          elsif tag[:type].casecmp('(group)').zero?
             if nesting.last == tag[:name]
               nesting.pop(2)
             else
@@ -68,7 +69,7 @@ namespace :usps do
               nesting.push(tag[:name])
               dig_set(shape, nesting, tag.merge(children: {}))
             end
-          elsif nesting.length > 0
+          elsif nesting.length.positive?
             nesting_with_children = nesting + [:children]
             dig_set(shape, nesting_with_children,
                     shape.dig(*nesting_with_children).merge({ tag[:name] => tag.merge(children: {}) }))
@@ -173,7 +174,7 @@ namespace :usps do
                 next if tr.ancestors('table').length > 1
 
                 tr.search('td').map do |td|
-                  has_table = td.search('table').length > 0
+                  has_table = td.search('table').length.positive?
                   if !has_table
                     td.content.gsub(/\n\s/, '').strip
                   else

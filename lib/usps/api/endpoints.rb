@@ -63,8 +63,9 @@ module Usps
         track_v2: 'TrackV2',
         usps_returns_label: 'USPSReturnsLabel',
         verify: 'Verify',
-        zip_code_lookup: 'ZipCodeLookup'
-      }.freeze
+        zip_code_lookup: 'ZipCodeLookup',
+      }
+
     end
   end
 end
