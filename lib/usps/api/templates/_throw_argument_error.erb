@@ -1,0 +1,3 @@
+<%= ErubisHelper.tabs(indentation) %>throw ArgumentError.new('Required arguments <% parents.each do |parent| %>:<%= parent %>, <% end %>:<%= option[:name].underscore %> missing') if options<% parents.each do |parent| %>[:<%= parent %>]<% end %>[:<%= option[:name].underscore %>].nil?
+<% option[:children].select{|n,o| o[:required]}.each do |child_option_name, child_option| %>
+	<%= Erubis::Eruby.new(File.read('/Users/joey/Sites/usps/lib/usps/api/templates/_throw_argument_error.erb')).result(option: child_option, parents: parents + [option[:name].underscore], indentation: indentation) %><% end %>
