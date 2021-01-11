@@ -1,5 +1,5 @@
 require 'bundler/setup'
-require 'usps'
+require 'usps-ruby-client'
 
 Usps.configure do |config|
   config.user_id = ENV['USPS_USER_ID']

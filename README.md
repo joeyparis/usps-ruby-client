@@ -10,7 +10,7 @@ An unofficial Ruby client for The United Sates Postal Service Web Tools API.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'usps'
+gem 'usps-ruby-client'
 ```
 
 And then execute:
@@ -58,8 +58,6 @@ After checking out the repo, run `bin/setup` to install dependencies. Then, run 
 Because the USPS website does not allow scripts to make requests against their website you must [download the API User Guide HTML files manually](https://www.usps.com/business/web-tools-apis/documentation-updates.htm). I recommend right-clicking the **HTM** and selecting *Save Link As...* to prevent any browser extensions from injecting their code and breaking the parsing.
 
 Place just the `.htm` files in `lib/data/api` (and remove any they may no longer be active) and run `rake usps:api:update`. This task will recreate all the relevant methods and some basic spec tests.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
 ## Contributing
 

@@ -2,13 +2,13 @@ $LOAD_PATH.push File.expand_path('lib', __dir__)
 require_relative 'lib/usps/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'usps'
+  spec.name          = 'usps-ruby-client'
   spec.version       = Usps::VERSION
   spec.authors       = ['Joey Paris']
   spec.email         = ['joey@leadjig.com']
 
-  spec.summary       = 'Automatically generated USPS API Client'
-  spec.description   = 'Automatically generated USPS API Client'
+  spec.summary       = 'An automatically generated USPS API Client'
+  spec.description   = 'An automatically generated USPS API Client'
   spec.homepage      = 'https://www.usps.com/business/web-tools-apis/documentation-updates.htm'
   spec.license       = 'MIT'
   spec.required_ruby_version = Gem::Requirement.new('>= 2.5.0')
