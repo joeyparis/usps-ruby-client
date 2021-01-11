@@ -1,5 +1,6 @@
 USPS Ruby Client
 =================
+[![Build Status](https://travis-ci.com/joeyparis/usps-ruby-client.svg?branch=master)](https://travis-ci.com/joeyparis/usps-ruby-client)
 [![Maintainability](https://api.codeclimate.com/v1/badges/29579702db626edc43ab/maintainability)](https://codeclimate.com/github/joeyparis/usps-ruby-client/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/29579702db626edc43ab/test_coverage)](https://codeclimate.com/github/joeyparis/usps-ruby-client/test_coverage)
 
