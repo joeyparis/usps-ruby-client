@@ -1,5 +1,7 @@
 USPS Ruby Client
 =================
+[![Maintainability](https://api.codeclimate.com/v1/badges/29579702db626edc43ab/maintainability)](https://codeclimate.com/github/joeyparis/usps-ruby-client/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/29579702db626edc43ab/test_coverage)](https://codeclimate.com/github/joeyparis/usps-ruby-client/test_coverage)
 
 An unofficial Ruby client for The United Sates Postal Service Web Tools API.
 
