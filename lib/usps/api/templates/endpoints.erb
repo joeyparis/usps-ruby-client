@@ -16,8 +16,7 @@ module Usps
 <% files.each do |f| %>
         <%= f[:file] %>: '<%= f[:module] %>',
 <% end %>
-      }
-
+      }.freeze
     end
   end
 end

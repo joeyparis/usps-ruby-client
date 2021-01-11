@@ -3,4 +3,4 @@
 <%= ErubisHelper.tabs(static_indentation) %>#<%= ErubisHelper.spaces(indentation*2) %>- <%= option[:description] %>
 <% end %>
 <% option[:children].each do |child_option_name, child_option| %>
-<%= Erubis::Eruby.new(File.read('/Users/joey/Sites/usps/lib/usps/api/templates/_options.erb')).result(option: child_option, parents: [], indentation: indentation + 1, static_indentation: static_indentation) %><% end %>
+<%= Erubis::Eruby.new(File.read('lib/usps/api/templates/_options.erb')).result(option: child_option, parents: [], indentation: indentation + 1, static_indentation: static_indentation) %><% end %>
