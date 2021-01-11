@@ -19,7 +19,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install usps
+    $ gem install usps-ruby-client
 
 ## Usage
 
@@ -61,7 +61,7 @@ Place just the `.htm` files in `lib/data/api` (and remove any they may no longer
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/joeyparis/usps. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/joeyparis/usps/blob/master/CODE_OF_CONDUCT.md).
+Bug reports and pull requests are welcome on GitHub at https://github.com/joeyparis/usps-ruby-client. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/joeyparis/usps-ruby-client/blob/master/CODE_OF_CONDUCT.md).
 
 This is still an early work-in-progress so any additional help is definitely appreciated!
 
@@ -71,4 +71,4 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the Usps project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/joeyparis/usps/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the Usps project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/joeyparis/usps-ruby-client/blob/master/CODE_OF_CONDUCT.md).
