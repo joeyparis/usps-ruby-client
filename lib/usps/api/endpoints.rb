@@ -24,48 +24,47 @@ require_relative 'endpoints/zip_code_lookup'
 module Usps
   module Api
     module Endpoints
-        include CarrierPickupSchedule
-        include CityStateLookup
-        include EVSExpressMailIntl
-        include EVSFirstClassMailIntl
-        include EVSPriorityMailIntl
-        include EVSGXGGetLabel
-        include EVSICancel
-        include HFPFacilityInfo
-        include IntlRateV2
-        include PTSEmail
-        include PTSPod
-        include PTSRre
-        include PTSTPod
-        include RateV4
-        include SCAN
-        include TrackV2
-        include USPSReturnsLabel
-        include Verify
-        include ZipCodeLookup
+      include CarrierPickupSchedule
+      include CityStateLookup
+      include EVSExpressMailIntl
+      include EVSFirstClassMailIntl
+      include EVSPriorityMailIntl
+      include EVSGXGGetLabel
+      include EVSICancel
+      include HFPFacilityInfo
+      include IntlRateV2
+      include PTSEmail
+      include PTSPod
+      include PTSRre
+      include PTSTPod
+      include RateV4
+      include SCAN
+      include TrackV2
+      include USPSReturnsLabel
+      include Verify
+      include ZipCodeLookup
 
-		ACTIONS = {
-			carrier_pickup_schedule: 'CarrierPickupSchedule',
-			city_state_lookup: 'CityStateLookup',
-			e_vs_express_mail_intl: 'EVSExpressMailIntl',
-			e_vs_first_class_mail_intl: 'EVSFirstClassMailIntl',
-			e_vs_priority_mail_intl: 'EVSPriorityMailIntl',
-			e_vsgxg_get_label: 'EVSGXGGetLabel',
-			e_vsi_cancel: 'EVSICancel',
-			hfp_facility_info: 'HFPFacilityInfo',
-			intl_rate_v2: 'IntlRateV2',
-			pts_email: 'PTSEmail',
-			pts_pod: 'PTSPod',
-			pts_rre: 'PTSRre',
-			ptst_pod: 'PTSTPod',
-			rate_v4: 'RateV4',
-			scan: 'SCAN',
-			track_v2: 'TrackV2',
-			usps_returns_label: 'USPSReturnsLabel',
-			verify: 'Verify',
-			zip_code_lookup: 'ZipCodeLookup',
-		}
-
+      ACTIONS = {
+        carrier_pickup_schedule: 'CarrierPickupSchedule',
+        city_state_lookup: 'CityStateLookup',
+        e_vs_express_mail_intl: 'EVSExpressMailIntl',
+        e_vs_first_class_mail_intl: 'EVSFirstClassMailIntl',
+        e_vs_priority_mail_intl: 'EVSPriorityMailIntl',
+        e_vsgxg_get_label: 'EVSGXGGetLabel',
+        e_vsi_cancel: 'EVSICancel',
+        hfp_facility_info: 'HFPFacilityInfo',
+        intl_rate_v2: 'IntlRateV2',
+        pts_email: 'PTSEmail',
+        pts_pod: 'PTSPod',
+        pts_rre: 'PTSRre',
+        ptst_pod: 'PTSTPod',
+        rate_v4: 'RateV4',
+        scan: 'SCAN',
+        track_v2: 'TrackV2',
+        usps_returns_label: 'USPSReturnsLabel',
+        verify: 'Verify',
+        zip_code_lookup: 'ZipCodeLookup'
+      }.freeze
     end
   end
 end

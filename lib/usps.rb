@@ -1,7 +1,7 @@
 # frozen_string_literal: true
-require "usps/version"
-require "usps/logger"
-require "usps/config"
+require 'usps/version'
+require 'usps/logger'
+require 'usps/config'
 
 require 'active_support'
 require 'active_support/core_ext'
