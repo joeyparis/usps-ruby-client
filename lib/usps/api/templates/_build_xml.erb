@@ -2,6 +2,6 @@
 <% if option[:required] %>
 <% indentation.times do %><%= "\t" %><% end %>xml.tag!('<%= option[:name] %>', options<% parents.each do |parent| %>[:<%= parent %>]<% end %>[:<%= option[:name].underscore %>])<% else %><% indentation.times do %><%= "\t" %><% end %>tag_unless_blank(xml, '<%= option[:name] %>', options<% parents.each do |parent| %>[:<%= parent %>]<% end %>[:<%= option[:name].underscore %>])<% end %><% else %><% indentation.times do %><%= "\t" %><% end %>xml.tag!('<%= option[:name] %>') do
 	<% option[:children].each do |child_option_name, child_option| %>
-	<%= Erubis::Eruby.new(File.read('/Users/joey/Sites/usps/lib/usps/api/templates/_build_xml.erb')).result(option: child_option, parents: parents + [option[:name].underscore], indentation: indentation + 1) %>
+	<%= Erubis::Eruby.new(File.read('lib/usps/api/templates/_build_xml.erb')).result(option: child_option, parents: parents + [option[:name].underscore], indentation: indentation + 1) %>
 	<% end %>
 <% (indentation+1).times do %><%= "\t" %><% end %>end <% if !option[:required] %>if options<% parents.each do |parent| %>[:<%= parent %>]<% end %>[:<%= option[:name].underscore %>].present?<% end %><% end %>

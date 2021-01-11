@@ -5,7 +5,7 @@ require 'erubis'
 require 'active_support'
 require 'active_support/core_ext'
 require 'pry'
-require '/Users/joey/Sites/usps/lib/helpers/erubis_helper'
+require 'helpers/erubis_helper'
 
 namespace :usps do
   namespace :api do
