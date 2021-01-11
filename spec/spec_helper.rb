@@ -6,6 +6,8 @@ Usps.configure do |config|
   config.user_id = ENV['USPS_USER_ID']
 end
 
+puts `rake usps:api:update`
+
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
   config.example_status_persistence_file_path = '.rspec_status'
