@@ -35,6 +35,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'multi_xml'
   spec.add_development_dependency 'amazing_print'
   spec.add_development_dependency 'erubis'
+  spec.add_development_dependency 'nokogiri'
   spec.add_development_dependency 'pry'
   spec.add_development_dependency 'rspec'
   spec.add_development_dependency 'rubocop'
