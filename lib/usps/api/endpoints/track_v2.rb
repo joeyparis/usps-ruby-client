@@ -6,9 +6,6 @@ module Usps
 	module Api
 		module Endpoints
 			module TrackV2
-				#
-				# Package Tracking
-				#
 				# The Package Tracking “Fields” API is similar
 				# to the Package Track API
 				# except for the request fields, API name, and the return information. Data
@@ -16,18 +13,15 @@ module Usps
 				# information is broken down into fields instead of having only one line of text.
 				# Up to 10 tracking IDs may be contained in each API request to the Web Tools
 				# server.
-				#
-				# @option option [(Alias)] :TrackFieldRequest (Required)
-				#   @option option [Integer] :Revision (Required)
-				#   @option option [String] :ClientIp (Optional)
-				#   @option option [String] :SourceId (Required)
-				#   @option option [String] :TrackID (Required)
-				#   @option option [String] :DestinationZipCode (Optional)
-				#   @option option [String] :MailingDate (Optional)
-
-				#
-				# @see 
-				def track_v2(options = {})
+				# @param [Hash] options
+				# @option options [required, Hash] track_field_request 
+				#  * *:revision* (required, Integer)
+				#  * *:client_ip* (String)
+				#  * *:source_id* (required, String)
+				#  * *:track_id* (required, String)
+				#  * *:destination_zip_code* (String)
+				#  * *:mailing_date* (String)
+def track_v2(options = {})
 					throw ArgumentError.new('Required arguments :track_field_request missing') if options[:track_field_request].nil?
 					throw ArgumentError.new('Required arguments :track_field_request, :revision missing') if options[:track_field_request][:revision].nil?
 					throw ArgumentError.new('Required arguments :track_field_request, :source_id missing') if options[:track_field_request][:source_id].nil?

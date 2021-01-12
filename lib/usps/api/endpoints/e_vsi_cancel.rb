@@ -6,9 +6,6 @@ module Usps
 	module Api
 		module Endpoints
 			module EVSICancel
-				#
-				# eVS International Cancel API
-				#
 				# The eVS
 				# International Cancel request allows an eVS label to be removed from processing
 				# if the request is made prior to 11:59 PM Central Time on the day of label creation.This functionality is available only if the eVS International
@@ -17,15 +14,11 @@ module Usps
 				# File v2.0 has not yet been created. Depending on customer profile setup, this
 				# transmission could occur for created labels every 15 minutes, at the end of the
 				# shipping day, or when a SCAN Form is manually triggered by the customer.
-				#
-				# @option option [(Alias)] :eVSICancelRequest (Required)
-				#   @option option [] :BarcodeNumber (Required)
-				#   - BarcodeNumber of original label. Length of 22, 30 or 34 numbers.
-				#   @option option [] :eVSICancelRequest (Required)
-
-				#
-				# @see 
-				def e_vsi_cancel(options = {})
+				# @param [Hash] options
+				# @option options [required, Hash] e_vsi_cancel_request 
+				#  * *:barcode_number* (required, ) — BarcodeNumber of original label. Length of 22, 30 or 34 numbers.
+				#  * *:e_vsi_cancel_request* (required, ) — 
+def e_vsi_cancel(options = {})
 					throw ArgumentError.new('Required arguments :e_vsi_cancel_request missing') if options[:e_vsi_cancel_request].nil?
 					throw ArgumentError.new('Required arguments :e_vsi_cancel_request, :barcode_number missing') if options[:e_vsi_cancel_request][:barcode_number].nil?
 					throw ArgumentError.new('Required arguments :e_vsi_cancel_request, :e_vsi_cancel_request missing') if options[:e_vsi_cancel_request][:e_vsi_cancel_request].nil?

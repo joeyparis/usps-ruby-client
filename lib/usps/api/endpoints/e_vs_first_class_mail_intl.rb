@@ -6,201 +6,105 @@ module Usps
 	module Api
 		module Endpoints
 			module EVSFirstClassMailIntl
-				#
-				# eVS First Class Mail International Label API
-				#
 				# The
 				# First Class Mail International Label API lets
 				# customers generate First Class International labels given the weight and
 				# dimensions of the item. 
-				#
-				# @option option [(Alias)] :eVSFirstClassMailIntlRequest (Required)
-				#   @option option [String] :PASSWORD (Optional)
-				#   - For backward compatibility; not validated.
-				#   @option option [Empty] :Option (Optional)
-				#   - For future use.
-				#   @option option [String] :Revision (Required)
-				#   - Use of value 2 Required as of January 2011. For example: <Revision>2</Revision>
-				#   @option option [(Group)] :ImageParameters (Optional)
-				#   - Groups alternate image options.
-				#     @option option [String] :ImageParameter (Optional)
-				#     - Returns alternate label image. Only alternate 4’’x6’’ size label image may be requested at this time. · 4X6LABEL - (4X6 on a full page 8.5/11” background) · 4X6LABELL - (Landscape – true size 4X6; image rotated, not on an 8.5 x 11 background page) · 4X6LABELP- (Portrait – true size 4X6, not on an 8.5 x 11 background page) · 4X6ZPL203DPI - (ZPL - Zebra Programming Language) format. When using this enumeration, <ImageType> is required - this tag cannot be left blank. Integrators should use either “TIF” or “PDF” for ZPL – neither value will impact the label image itself, but it must be included in the request to return a successful response. · 4X6ZPL300DPI - Prints a label formatted for ZPL printers in 300 dpi. When using this enumeration, <ImageType> is required - this tag cannot be left blank. Integrators should use either “TIF” or “PDF” for ZPL – neither value will impact the label image itself, but it must be included in the request to return a successful response. For example: <ImageParameter>4X6LABEL</ImageParameter>
-				#     @option option [String] :FromFirstName (Required)
-				#     - Both FromFirstName and FromLastName are Required if FromFirmName is left blank. Maximum Length: 32 characters total for First, Middle, and Last Names with space after first and middle name. For example: <FromFirstName>John</FromFirstName>
-				#     @option option [String] :FromMiddleInitial (Optional)
-				#     - Middle Initial. Maximum Length: 32 characters total for First, Middle, and Last Names with space after first and middle name. For example: <FromMiddleInitial>L</FromMiddleInitial>
-				#     @option option [String] :FromLastName (Required)
-				#     - Both FromFirstName and FromLastName are Required if FromFirmName is left blank. Maximum Length: 32 characters total for First, Middle, and Last Names with space after first and middle name. For example: <FromLastName>Doe</FromLastName>
-				#     @option option [String] :FromFirm (Required)
-				#     - FromFirm is Required if FromFirstName and FromLastName are left blank. For example: <FromFirm>XYZ</FromFirm>
-				#     @option option [String] :FromAddress1 (Optional)
-				#     - Use this tag for a suite or apartment number only. For example: <FromAddress1>Suite 100</FromAddress1>
-				#     @option option [String] :FromAddress2 (Required)
-				#     - Use this tag for the primary address line. For example: <FromAddress2>10 Elm Street</FromAddress2>
-				#     @option option [String] :FromUrbanization (Optional)
-				#     - Use this tag for Puerto Rico only. ZIP Code prefixes 006 to 009, if area is so designated. For example:<FromUrbanization>URB Caparra Ter</FromUrbanization>
-				#     @option option [String] :FromCity (Required)
-				#     - Use this tag to specify originating city. For example: <FromCity>Anytown</FromCity>
-				#     @option option [String] :FromState (Required)
-				#     - Use 2-letter USPS abbreviation. For example: <FromState>AK</FromState>
-				#     @option option [String] :FromZip5 (Required)
-				#     - Five-digit valid ZIP code Required. For example: <FromZip5>01234</FromZip5>
-				#     @option option [String] :FromZip4 (Optional)
-				#     - If value is entered, four digits are Required. Must be a valid ZIP+4 extension. For example: <FromZip4>5678</FromZip4>
-				#     @option option [String] :FromPhone (Required)
-				#     - 10 digits Required (including area code), with no punctuation. Use format: 2125551234 For example: <FromPhone>5555555555</FromPhone>
-				#     @option option [String] :ToName (Optional)
-				#     - Deprecated. See “ToFirstName” and “ToLastName” tags.
-				#     @option option [String] :ToFirstName (Required)
-				#     - Both ToFirstName and ToLastName are Required if ToFirm is left blank. For example: <ToFirstName>John</ToFirstName>
-				#     @option option [String] :ToLastName (Required)
-				#     - Both ToFirstName and ToLastName are Required if ToFirm is left blank. For example: <ToLastName>Doe</ToLastName>
-				#     @option option [String] :ToFirm (Required)
-				#     - ToFirm is Required if ToFirstName and ToLastName are left blank. For example: <ToFirm></ToFirm>
-				#     @option option [String] :ToAddress1 (Optional)
-				#     - Three address lines are provided, but only one is Required. Use as many as needed for complete address. For example: <ToAddress1>Apartado 3068</ToAddress1>
-				#     @option option [String] :ToAddress2 (Required)
-				#     - Three address lines are provided, but only one is Required. Use as many as needed for complete address.
-				#     @option option [String] :ToAddress3 (Optional)
-				#     - Three address lines are provided, but only one is Required. Use as many as needed for complete address.
-				#     @option option [String] :ToCity (Required)
-				#     - Recipient's city. For example: <ToCity>PUERTO VALLARTA</ToCity>
-				#     @option option [String] :ToProvince (Optional)
-				#     - Enter the province for the recipient. For example: <ToProvince>JALISCO</ToProvince>
-				#     @option option [String] :ToCountry (Required)
-				#     - The country name entered must match an entry from the USPS-approved International Index of Countries and Localities or be "United States". (http://pe.usps.gov/text/Imm/Immctry.htm - click on the link for "International Country Listings.") Using a country name not on the list will result in a request failure. For example: <ToCountry>MEXICO</ToCountry>
-				#     @option option [String] :ToPostalCode (Required)
-				#     - Enter the postal code for the recipient. For example: <ToPostalCode>46807</ToPostalCode>
-				#     @option option [String] :ToPOBoxFlag (Required)
-				#     - Indicates whether or not the To Address is a Post Office Box. For example: <ToPOBoxFlag>N</ToPOBoxFlag>
-				#     @option option [String] :ToPhone (Optional)
-				#     - No format checking is done on international phone numbers. Required when FirstClassMailIntlRequest[ToPOBoxFlag='Y']. For example: <ToPhone>011 52 (322) 222-0069</ToPhone>
-				#     @option option [String] :ToFax (Optional)
-				#     - No format checking is done on international fax numbers. For example: <ToFax>011 52 (322) 222-0074</ToFax>
-				#     @option option [String] :ToEmail (Optional)
-				#     - One single, complete, and valid e-mail address is Required if tag is used. For example: <ToEmail>cpapple@email.com</ToEmail>
-				#     @option option [String] :FirstClassMailType (Optional)
-				#     - Used to determine the postage rate. See also FirstClassMailIntlRequest/Machinable. For example: <FirstClassMailType>PACKAGE SERVICE</FirstClassMailType>
-				#     @option option [(Group)] :ShippingContents (Required)
-				#       @option option [(Group)] :ItemDetail (Optional)
-				#         @option option [String] :Description (Required)
-				#         - Description of the item. Non-descriptive wording such as 'Gift' will result in an error. For example: <Description>Policy guidelines document</Description>
-				#         @option option [Integer] :Quantity (Required)
-				#         - Quantity of the item. Integer value Required. For example: <Quantity>1</Quantity>
-				#         @option option [Decimal] :Value (Required)
-				#         - The data entered with this tag provides the value of the set of items. If the item is 2 boxes of 50 pens and the value of each box is $10.00, "20.00" (2 boxes x $10.00) should be entered. If the value of each pen is .25 then "25.00" (100 pens x .25) should be entered. For example: <Value>55.00</Value>
-				#         @option option [Integer] :NetPounds (Required)
-				#         - Provide the pounds component of the weight of the individual item listed within this ItemDetail. For example: <NetPounds>1</NetPounds>
-				#         @option option [Decimal] :NetOunces (Required)
-				#         - Provide the ounces component of the weight of the individual item listed within this ItemDetail. For example: <NetOunces>5</NetOunces>
-				#         @option option [String] :HSTariffNumber (Required)
-				#         - For commercial items only. If known, the HS tariff number must be based on the Harmonized Commodity Description and Coding System developed by the World Customs Organization. For example: <HSTariffNumber>490110</HSTariffNumber>
-				#         @option option [String] :CountryOfOrigin (Required)
-				#         - For commercial items only. Country of Origin means the country where the goods originated, e.g. were produced, manufactured, or assembled. It is recommended you supply this information and attach an invoice to the outside to accelerate customs clearance in processing the items. The country name entered must match an entry from the USPS-approved International Index of Countries and Localities or be "United States". (http://pe.usps.gov/text/Imm/Immctry.htm - click on the link for "International Country Listings.") Using a country name not on the list will result in a request failure. For example: <CountryOfOrigin>United States</CountryOfOrigin>
-				#         @option option [String Decimal] :Postage (Optional)
-				#         - Use this tag for entering a postage amount, if known. If the tag is present, but the value is blank, the postage will be automatically calculated. For example: <Postage></Postage>
-				#         @option option [Integer] :GrossPounds (Required)
-				#         - Gross pounds and ounces together represent the total package weight, including packing material. For example, a package weighing 3 lbs 8 ounces would have "3" entered here and "8" entered with the "GrossOunces" tag. The Web Tool will check for maximum shipping weight of 70 pounds. Allowable weight may change based on the service used to send package and the destination country. For example: <GrossPounds>4</GrossPounds>
-				#         @option option [Integer] :GrossOunces (Required)
-				#         - Enter the ounces component of the total package weight with this tag. For example: <GrossOunces>0</GrossOunces>
-				#         @option option [Boolean] :Machinable (Optional)
-				#         - Indicates whether or not the item is machinable. A surcharge is applied to a First-Class Mail International item if it has one or more non-machinable characteristics. See International Mail Manual (IMM) Section 241 for more information. For example: <Machinable>false</Machinable>
-				#         @option option [String] :ContentType (Required)
-				#         - Specifies the content of the package or envelope. For example: <ContentType>DOCUMENTS</ContentType>
-				#         @option option [String] :ContentTypeOther (Optional)
-				#         - Required when FirstClassMailIntlRequest[ContentType='OTHER'].
-				#         @option option [String] :Agreement (Required)
-				#         - Indicates the requestor's agreement to terms and conditions of mailing. Requires a value of Y to print and in Signature Box along with Current Date (Central Time USA). Any other value returns an error.
-				#         @option option [String] :Comments (Optional)
-				#         - For future use.
-				#         @option option [String] :LicenseNumber (Optional)
-				#         - For future use.
-				#         @option option [String] :CertificateNumber (Optional)
-				#         - For future use.
-				#         @option option [String] :InvoiceNumber (Optional)
-				#         - For future use.
-				#         @option option [String] :ImageType (Required)
-				#         - Label Image Type. Note: All <ImageType> values are ignored when <ImageParameter> = “4X6ZPL203DPI” or “4X6ZPL300DPI”. For example: <ImageType>PDF</ImageType>
-				#         @option option [String] :ImageLayout (Optional)
-				#         - Specified whether the pages are to be returned one per file or all in one file. The current FCMI label is one page so this tag has no effect. For example: <ImageLayout>ONEPERFILE</ImageLayout>
-				#         @option option [String] :CustomerRefNo (Optional)
-				#         - Written to Postal Manifest Detail record. For example: <CustomerRefNo>Ref 369246</CustomerRefNo>
-				#         @option option [String] :CustomerRefNo2 (Optional)
-				#         - Written to Postal Manifest Detail record For example: <CustomerRefNo2>ACT 369246</CustomerRefNo2>
-				#         @option option [String] :POZipCode (Optional)
-				#         - ZIP Code of Post Office or collection box where item is mailed. May be different than FromZip5. This tag will take precedence over FromZip5 when provided. For example: <POZipCode>00962</POZipCode>
-				#         @option option [String] :LabelDate (Optional)
-				#         - Date the mail will enter the mail stream. No more than three days in the future. Default is day of request. For example: <LabelDate>09/28/2010</LabelDate>
-				#         @option option [String] :HoldForManifest (Optional)
-				#         - Restricted use. Holds manifest record for possible inclusion in SCAN request.
-				#         @option option [String] :EELPFC (Optional)
-				#         - Exemption and Exclusion Legend or PFC Code. Currently Optional, in the future it may be Required for use. Please refer to the International Mail Manual for further information - http://pe.usps.gov/text/imm/immc5_007.htm. To activate check boxes use ”30.37a” or “30.37h”. For example: <EELPFC>30.37a</EELPFC>
-				#         @option option [String] :Container (Optional)
-				#         - This tag has been deprecated
-				#         @option option [Decimal] :Length (Optional)
-				#         - Value must be numeric. Units are inches. If partial dimensions are provided, an error response will return. Length, Width, Height are required for accurate pricing of a rectangular package when any dimension of the item exceeds 12 inches. In addition, Girth is required only for a non-rectangular package in addition to Length, Width, Height when any dimension of the package exceeds 12 inches. For rectangular packages, the Girth dimension must be left blank as this dimension is to only be used for non-rectangular packages. Please reference https://about.usps.com/postalbulletin/2018/pb22509/html/updt_002.htm for more details on dimensional weight pricing
-				#         @option option [Decimal] :Width (Optional)
-				#         - Value must be numeric. Units are inches. If partial dimensions are provided, an error response will return. Length, Width, Height are required for accurate pricing of a rectangular package when any dimension of the item exceeds 12 inches. In addition, Girth is required only for a non-rectangular package in addition to Length, Width, Height when any dimension of the package exceeds 12 inches. For rectangular packages, the Girth dimension must be left blank as this dimension is to only be used for non-rectangular packages. Please reference https://about.usps.com/postalbulletin/2018/pb22509/html/updt_002.htm for more details on dimensional weight pricing
-				#         @option option [Decimal] :Height (Optional)
-				#         - Value must be numeric. Units are inches. If partial dimensions are provided, an error response will return. Length, Width, Height are required for accurate pricing of a rectangular package when any dimension of the item exceeds 12 inches. In addition, Girth is required only for a non-rectangular package in addition to Length, Width, Height when any dimension of the package exceeds 12 inches. For rectangular packages, the Girth dimension must be left blank as this dimension is to only be used for non-rectangular packages. Please reference https://about.usps.com/postalbulletin/2018/pb22509/html/updt_002.htm for more details on dimensional weight pricing
-				#         @option option [Decimal] :Girth (Optional)
-				#         - Value must be numeric. Units are inches. If partial dimensions are provided, an error response will return. Length, Width, Height are required for accurate pricing of a rectangular package when any dimension of the item exceeds 12 inches. In addition, Girth is required only for a non-rectangular package in addition to Length, Width, Height when any dimension of the package exceeds 12 inches. For rectangular packages, the Girth dimension must be left blank as this dimension is to only be used for non-rectangular packages. Please reference https://about.usps.com/postalbulletin/2018/pb22509/html/updt_002.htm for more details on dimensional weight pricing
-				#         @option option [(Group)] :ExtraServices (Optional)
-				#         - Groups extra services elements
-				#           @option option [Extra Service Name] :ExtraService (Optional)
-				#           - [{"Extra Service Name"=>"e-USPS Delivery Confirmation International", "Service ID"=>"109"}]
-				#           @option option [String] :PriceOptions (Optional)
-				#           - Indicates if retail, commercial base or commercial plus pricing should be returned. For example: <PriceOptions>COMMERCIAL BASE</PriceOptions>
-				#           @option option [String] :ActionCode (Optional)
-				#           - Passed to SPE file via the shipment manifest.
-				#           @option option [boolean] :OptOutOfSPE (Optional)
-				#           - Allows a customer to opt out of SPE file creation. “false” WILL create a SPE file. Note: This request tag is case sensitive.
-				#           @option option [String] :PermitNumber (Optional)
-				#           - Number associated with a mailing permit. The permit is permission to use a certain postage payment method for bulk and commercial mailings
-				#           @option option [String] :AccountZipCode (Optional)
-				#           - ZIP of Account Post Office where mailed if different from <FromZip5/>. Written to Postal Manifest Detail record. Must be valid ZIP Code. For example: <AccountZipCode>00962</AccountZipCode>
-				#           @option option [boolean] :Machinable (Optional)
-				#           - Indicates whether or not the item is machinable. A surcharge is applied to a First-Class Mail International item if it has one or more non-machinable characteristics. See International Mail Manual (IMM) Section 241 for more information. For example: <Machinable>false</Machinable>
-				#           @option option [String] :DestinationRateIndicator (Required)
-				#           - Required for destination entry packages · I = International Service Center (ISC) · N = None
-				#           @option option [String] :MID (Optional)
-				#           - Mailer ID (MID), Represents Mail Owner MID. Located in position #13 in the Detail 1 record of the Shipping Services File v2.0. For example: <MID>847654321</ MID>
-				#           @option option [String] :LogisticsManagerMID (Optional)
-				#           - The MID of the company that manages the mailing. Located in position #12 in the Detail 1 record of the Shipping Services File v2.0. Note: If LogisticsManagerMID is populated, either CRID or MID must also be populated. For example: <LogisticsManagerMID>489001</LogisticsManagerMID>
-				#           @option option [String] :CRID (Optional)
-				#           - Customer Registration ID, Represents Mail Owner CRID. Located in position #20 in the Detail 1 record of the Shipping Services File v2.0. For example: <CRID>544762</ CRID>
-				#           @option option [String] :VendorCode (Optional)
-				#           - Code from vendor software to identify the developer of the shipping system. Located in position #15 in the Detail 1 record of the Shipping Services File v2.0. For example: <VendorCode>1234<VendorCode>
-				#           @option option [String] :VendorProductVersionNumber (Optional)
-				#           - Shipping software’s product version number. Located in position #16 in the Detail 1 record of the Shipping Services File v2.0. For example: <VendorProductVersionNumber>5.02.1B</ VendorProductVersionNumber>
-				#           @option option [String] :ePostageMailerReporting (Optional)
-				#           - Verifies Sender Information, sender fields must match From information when <ePostageMailerReporting>=1 · 1 - (ePostage sender information in SSF) · 2 - (ePostage sender information through DES) · 3 - (ePostage sender information using child MID)
-				#           @option option [String] :SenderFirstName (Optional)
-				#           - First Name of Sender. For example: <SenderFirstName>Adam </ SenderFirstName> Required when <ePostageMailerReporting>=1
-				#           @option option [String] :SenderLastName (Optional)
-				#           - Last Name of Sender. For example: <SenderLastName>Smith </ SenderLastName> Required when <ePostageMailerReporting>=1
-				#           @option option [String] :SenderBusinessName (Optional)
-				#           - Values for Sender Business Name must be sent. For example: <SenderBusinessName>USPS</ SenderBusinessName>
-				#           @option option [String] :SenderAddress1 (Optional)
-				#           - Sender address line. Use this tag for full address (Address1 and Address2) Must match Address1 and Address2 or will produce an error. For example: <SenderAddress1>STE 150 10 Elm Street </SenderAddress1> Required when <ePostageMailerReporting>=1
-				#           @option option [String] :SenderCity (Optional)
-				#           - Sender city For example: <SenderCity>BETHESDA</ SenderCity> Required when <ePostageMailerReporting>=1
-				#           @option option [String] :SenderState (Optional)
-				#           - Sender state. For example: <SenderState>MD</ SenderState> Required when <ePostageMailerReporting>=1
-				#           @option option [String] :SenderZip5 (Optional)
-				#           - Sender ZIP code. For example: <SenderZip5>20212</SenderZip5> Required when <ePostageMailerReporting>=1
-				#           @option option [String] :SenderPhone (Optional)
-				#           - Sender Phone #. 10 digits Required (including area code), with no punctuation. For example: <SenderPhone>2125551234</ SenderPhone> Required when <ePostageMailerReporting>=1
-				#           @option option [String] :SenderEmail (Optional)
-				#           - E-mail Address of Sender. Valid e-mail addresses must be used. For example: <SenderEMail>cpapple@email.com</ SenderEMail> Required when <ePostageMailerReporting>=1
-				#           @option option [String] :RemainingBarcodes (Required)
-				#           - This contains the number of remaining barcodes that can be generated for this particular request.
-				#           @option option [String] :ChargebackCode (Optional)
-				#           - Used in Shipping Services File v2.0 for G-10 labels. Contact your Technical Integration Specialist for details.
-
-				#
-				# @see 
-				def e_vs_first_class_mail_intl(options = {})
+				# @param [Hash] options
+				# @option options [required, Hash] e_vs_first_class_mail_intl_request 
+				#  * *:password* (String) — For backward compatibility; not validated.
+				#  * *:option* (Empty) — For future use.
+				#  * *:revision* (required, String) — Use of value 2 Required as of January 2011. For example: <Revision>2</Revision>
+				#  * *:image_parameters* (Hash) — Groups alternate image options.
+				#    * *:image_parameter* (String) — Returns alternate label image. Only alternate 4’’x6’’ size label image may be requested at this time. · 4X6LABEL - (4X6 on a full page 8.5/11” background) · 4X6LABELL - (Landscape – true size 4X6; image rotated, not on an 8.5 x 11 background page) · 4X6LABELP- (Portrait – true size 4X6, not on an 8.5 x 11 background page) · 4X6ZPL203DPI - (ZPL - Zebra Programming Language) format. When using this enumeration, <ImageType> is required - this tag cannot be left blank. Integrators should use either “TIF” or “PDF” for ZPL – neither value will impact the label image itself, but it must be included in the request to return a successful response. · 4X6ZPL300DPI - Prints a label formatted for ZPL printers in 300 dpi. When using this enumeration, <ImageType> is required - this tag cannot be left blank. Integrators should use either “TIF” or “PDF” for ZPL – neither value will impact the label image itself, but it must be included in the request to return a successful response. For example: <ImageParameter>4X6LABEL</ImageParameter>
+				#    * *:from_first_name* (required, String) — Both FromFirstName and FromLastName are Required if FromFirmName is left blank. Maximum Length: 32 characters total for First, Middle, and Last Names with space after first and middle name. For example: <FromFirstName>John</FromFirstName>
+				#    * *:from_middle_initial* (String) — Middle Initial. Maximum Length: 32 characters total for First, Middle, and Last Names with space after first and middle name. For example: <FromMiddleInitial>L</FromMiddleInitial>
+				#    * *:from_last_name* (required, String) — Both FromFirstName and FromLastName are Required if FromFirmName is left blank. Maximum Length: 32 characters total for First, Middle, and Last Names with space after first and middle name. For example: <FromLastName>Doe</FromLastName>
+				#    * *:from_firm* (required, String) — FromFirm is Required if FromFirstName and FromLastName are left blank. For example: <FromFirm>XYZ</FromFirm>
+				#    * *:from_address1* (String) — Use this tag for a suite or apartment number only. For example: <FromAddress1>Suite 100</FromAddress1>
+				#    * *:from_address2* (required, String) — Use this tag for the primary address line. For example: <FromAddress2>10 Elm Street</FromAddress2>
+				#    * *:from_urbanization* (String) — Use this tag for Puerto Rico only. ZIP Code prefixes 006 to 009, if area is so designated. For example:<FromUrbanization>URB Caparra Ter</FromUrbanization>
+				#    * *:from_city* (required, String) — Use this tag to specify originating city. For example: <FromCity>Anytown</FromCity>
+				#    * *:from_state* (required, String) — Use 2-letter USPS abbreviation. For example: <FromState>AK</FromState>
+				#    * *:from_zip5* (required, String) — Five-digit valid ZIP code Required. For example: <FromZip5>01234</FromZip5>
+				#    * *:from_zip4* (String) — If value is entered, four digits are Required. Must be a valid ZIP+4 extension. For example: <FromZip4>5678</FromZip4>
+				#    * *:from_phone* (required, String) — 10 digits Required (including area code), with no punctuation. Use format: 2125551234 For example: <FromPhone>5555555555</FromPhone>
+				#    * *:to_name* (String) — Deprecated. See “ToFirstName” and “ToLastName” tags.
+				#    * *:to_first_name* (required, String) — Both ToFirstName and ToLastName are Required if ToFirm is left blank. For example: <ToFirstName>John</ToFirstName>
+				#    * *:to_last_name* (required, String) — Both ToFirstName and ToLastName are Required if ToFirm is left blank. For example: <ToLastName>Doe</ToLastName>
+				#    * *:to_firm* (required, String) — ToFirm is Required if ToFirstName and ToLastName are left blank. For example: <ToFirm></ToFirm>
+				#    * *:to_address1* (String) — Three address lines are provided, but only one is Required. Use as many as needed for complete address. For example: <ToAddress1>Apartado 3068</ToAddress1>
+				#    * *:to_address2* (required, String) — Three address lines are provided, but only one is Required. Use as many as needed for complete address.
+				#    * *:to_address3* (String) — Three address lines are provided, but only one is Required. Use as many as needed for complete address.
+				#    * *:to_city* (required, String) — Recipient's city. For example: <ToCity>PUERTO VALLARTA</ToCity>
+				#    * *:to_province* (String) — Enter the province for the recipient. For example: <ToProvince>JALISCO</ToProvince>
+				#    * *:to_country* (required, String) — The country name entered must match an entry from the USPS-approved International Index of Countries and Localities or be "United States". (http://pe.usps.gov/text/Imm/Immctry.htm - click on the link for "International Country Listings.") Using a country name not on the list will result in a request failure. For example: <ToCountry>MEXICO</ToCountry>
+				#    * *:to_postal_code* (required, String) — Enter the postal code for the recipient. For example: <ToPostalCode>46807</ToPostalCode>
+				#    * *:to_po_box_flag* (required, String) — Indicates whether or not the To Address is a Post Office Box. For example: <ToPOBoxFlag>N</ToPOBoxFlag>
+				#    * *:to_phone* (String) — No format checking is done on international phone numbers. Required when FirstClassMailIntlRequest[ToPOBoxFlag='Y']. For example: <ToPhone>011 52 (322) 222-0069</ToPhone>
+				#    * *:to_fax* (String) — No format checking is done on international fax numbers. For example: <ToFax>011 52 (322) 222-0074</ToFax>
+				#    * *:to_email* (String) — One single, complete, and valid e-mail address is Required if tag is used. For example: <ToEmail>cpapple@email.com</ToEmail>
+				#    * *:first_class_mail_type* (String) — Used to determine the postage rate. See also FirstClassMailIntlRequest/Machinable. For example: <FirstClassMailType>PACKAGE SERVICE</FirstClassMailType>
+				#    * *:shipping_contents* (required, Hash) — 
+				#      * *:item_detail* (Hash) — 
+				#        * *:description* (required, String) — Description of the item. Non-descriptive wording such as 'Gift' will result in an error. For example: <Description>Policy guidelines document</Description>
+				#        * *:quantity* (required, Integer) — Quantity of the item. Integer value Required. For example: <Quantity>1</Quantity>
+				#        * *:value* (required, Decimal) — The data entered with this tag provides the value of the set of items. If the item is 2 boxes of 50 pens and the value of each box is $10.00, "20.00" (2 boxes x $10.00) should be entered. If the value of each pen is .25 then "25.00" (100 pens x .25) should be entered. For example: <Value>55.00</Value>
+				#        * *:net_pounds* (required, Integer) — Provide the pounds component of the weight of the individual item listed within this ItemDetail. For example: <NetPounds>1</NetPounds>
+				#        * *:net_ounces* (required, Decimal) — Provide the ounces component of the weight of the individual item listed within this ItemDetail. For example: <NetOunces>5</NetOunces>
+				#        * *:hs_tariff_number* (required, String) — For commercial items only. If known, the HS tariff number must be based on the Harmonized Commodity Description and Coding System developed by the World Customs Organization. For example: <HSTariffNumber>490110</HSTariffNumber>
+				#        * *:country_of_origin* (required, String) — For commercial items only. Country of Origin means the country where the goods originated, e.g. were produced, manufactured, or assembled. It is recommended you supply this information and attach an invoice to the outside to accelerate customs clearance in processing the items. The country name entered must match an entry from the USPS-approved International Index of Countries and Localities or be "United States". (http://pe.usps.gov/text/Imm/Immctry.htm - click on the link for "International Country Listings.") Using a country name not on the list will result in a request failure. For example: <CountryOfOrigin>United States</CountryOfOrigin>
+				#        * *:postage* (String Decimal) — Use this tag for entering a postage amount, if known. If the tag is present, but the value is blank, the postage will be automatically calculated. For example: <Postage></Postage>
+				#        * *:gross_pounds* (required, Integer) — Gross pounds and ounces together represent the total package weight, including packing material. For example, a package weighing 3 lbs 8 ounces would have "3" entered here and "8" entered with the "GrossOunces" tag. The Web Tool will check for maximum shipping weight of 70 pounds. Allowable weight may change based on the service used to send package and the destination country. For example: <GrossPounds>4</GrossPounds>
+				#        * *:gross_ounces* (required, Integer) — Enter the ounces component of the total package weight with this tag. For example: <GrossOunces>0</GrossOunces>
+				#        * *:machinable* (Boolean) — Indicates whether or not the item is machinable. A surcharge is applied to a First-Class Mail International item if it has one or more non-machinable characteristics. See International Mail Manual (IMM) Section 241 for more information. For example: <Machinable>false</Machinable>
+				#        * *:content_type* (required, String) — Specifies the content of the package or envelope. For example: <ContentType>DOCUMENTS</ContentType>
+				#        * *:content_type_other* (String) — Required when FirstClassMailIntlRequest[ContentType='OTHER'].
+				#        * *:agreement* (required, String) — Indicates the requestor's agreement to terms and conditions of mailing. Requires a value of Y to print and in Signature Box along with Current Date (Central Time USA). Any other value returns an error.
+				#        * *:comments* (String) — For future use.
+				#        * *:license_number* (String) — For future use.
+				#        * *:certificate_number* (String) — For future use.
+				#        * *:invoice_number* (String) — For future use.
+				#        * *:image_type* (required, String) — Label Image Type. Note: All <ImageType> values are ignored when <ImageParameter> = “4X6ZPL203DPI” or “4X6ZPL300DPI”. For example: <ImageType>PDF</ImageType>
+				#        * *:image_layout* (String) — Specified whether the pages are to be returned one per file or all in one file. The current FCMI label is one page so this tag has no effect. For example: <ImageLayout>ONEPERFILE</ImageLayout>
+				#        * *:customer_ref_no* (String) — Written to Postal Manifest Detail record. For example: <CustomerRefNo>Ref 369246</CustomerRefNo>
+				#        * *:customer_ref_no2* (String) — Written to Postal Manifest Detail record For example: <CustomerRefNo2>ACT 369246</CustomerRefNo2>
+				#        * *:po_zip_code* (String) — ZIP Code of Post Office or collection box where item is mailed. May be different than FromZip5. This tag will take precedence over FromZip5 when provided. For example: <POZipCode>00962</POZipCode>
+				#        * *:label_date* (String) — Date the mail will enter the mail stream. No more than three days in the future. Default is day of request. For example: <LabelDate>09/28/2010</LabelDate>
+				#        * *:hold_for_manifest* (String) — Restricted use. Holds manifest record for possible inclusion in SCAN request.
+				#        * *:eelpfc* (String) — Exemption and Exclusion Legend or PFC Code. Currently Optional, in the future it may be Required for use. Please refer to the International Mail Manual for further information - http://pe.usps.gov/text/imm/immc5_007.htm. To activate check boxes use ”30.37a” or “30.37h”. For example: <EELPFC>30.37a</EELPFC>
+				#        * *:container* (String) — This tag has been deprecated
+				#        * *:length* (Decimal) — Value must be numeric. Units are inches. If partial dimensions are provided, an error response will return. Length, Width, Height are required for accurate pricing of a rectangular package when any dimension of the item exceeds 12 inches. In addition, Girth is required only for a non-rectangular package in addition to Length, Width, Height when any dimension of the package exceeds 12 inches. For rectangular packages, the Girth dimension must be left blank as this dimension is to only be used for non-rectangular packages. Please reference https://about.usps.com/postalbulletin/2018/pb22509/html/updt_002.htm for more details on dimensional weight pricing
+				#        * *:width* (Decimal) — Value must be numeric. Units are inches. If partial dimensions are provided, an error response will return. Length, Width, Height are required for accurate pricing of a rectangular package when any dimension of the item exceeds 12 inches. In addition, Girth is required only for a non-rectangular package in addition to Length, Width, Height when any dimension of the package exceeds 12 inches. For rectangular packages, the Girth dimension must be left blank as this dimension is to only be used for non-rectangular packages. Please reference https://about.usps.com/postalbulletin/2018/pb22509/html/updt_002.htm for more details on dimensional weight pricing
+				#        * *:height* (Decimal) — Value must be numeric. Units are inches. If partial dimensions are provided, an error response will return. Length, Width, Height are required for accurate pricing of a rectangular package when any dimension of the item exceeds 12 inches. In addition, Girth is required only for a non-rectangular package in addition to Length, Width, Height when any dimension of the package exceeds 12 inches. For rectangular packages, the Girth dimension must be left blank as this dimension is to only be used for non-rectangular packages. Please reference https://about.usps.com/postalbulletin/2018/pb22509/html/updt_002.htm for more details on dimensional weight pricing
+				#        * *:girth* (Decimal) — Value must be numeric. Units are inches. If partial dimensions are provided, an error response will return. Length, Width, Height are required for accurate pricing of a rectangular package when any dimension of the item exceeds 12 inches. In addition, Girth is required only for a non-rectangular package in addition to Length, Width, Height when any dimension of the package exceeds 12 inches. For rectangular packages, the Girth dimension must be left blank as this dimension is to only be used for non-rectangular packages. Please reference https://about.usps.com/postalbulletin/2018/pb22509/html/updt_002.htm for more details on dimensional weight pricing
+				#        * *:extra_services* (Hash) — Groups extra services elements
+				#          * *:extra_service* (Extra Service Name) — [{"Extra Service Name"=>"e-USPS Delivery Confirmation International", "Service ID"=>"109"}]
+				#          * *:price_options* (String) — Indicates if retail, commercial base or commercial plus pricing should be returned. For example: <PriceOptions>COMMERCIAL BASE</PriceOptions>
+				#          * *:action_code* (String) — Passed to SPE file via the shipment manifest.
+				#          * *:opt_out_of_spe* (boolean) — Allows a customer to opt out of SPE file creation. “false” WILL create a SPE file. Note: This request tag is case sensitive.
+				#          * *:permit_number* (String) — Number associated with a mailing permit. The permit is permission to use a certain postage payment method for bulk and commercial mailings
+				#          * *:account_zip_code* (String) — ZIP of Account Post Office where mailed if different from <FromZip5/>. Written to Postal Manifest Detail record. Must be valid ZIP Code. For example: <AccountZipCode>00962</AccountZipCode>
+				#          * *:machinable* (boolean) — Indicates whether or not the item is machinable. A surcharge is applied to a First-Class Mail International item if it has one or more non-machinable characteristics. See International Mail Manual (IMM) Section 241 for more information. For example: <Machinable>false</Machinable>
+				#          * *:destination_rate_indicator* (required, String) — Required for destination entry packages · I = International Service Center (ISC) · N = None
+				#          * *:mid* (String) — Mailer ID (MID), Represents Mail Owner MID. Located in position #13 in the Detail 1 record of the Shipping Services File v2.0. For example: <MID>847654321</ MID>
+				#          * *:logistics_manager_mid* (String) — The MID of the company that manages the mailing. Located in position #12 in the Detail 1 record of the Shipping Services File v2.0. Note: If LogisticsManagerMID is populated, either CRID or MID must also be populated. For example: <LogisticsManagerMID>489001</LogisticsManagerMID>
+				#          * *:crid* (String) — Customer Registration ID, Represents Mail Owner CRID. Located in position #20 in the Detail 1 record of the Shipping Services File v2.0. For example: <CRID>544762</ CRID>
+				#          * *:vendor_code* (String) — Code from vendor software to identify the developer of the shipping system. Located in position #15 in the Detail 1 record of the Shipping Services File v2.0. For example: <VendorCode>1234<VendorCode>
+				#          * *:vendor_product_version_number* (String) — Shipping software’s product version number. Located in position #16 in the Detail 1 record of the Shipping Services File v2.0. For example: <VendorProductVersionNumber>5.02.1B</ VendorProductVersionNumber>
+				#          * *:e_postage_mailer_reporting* (String) — Verifies Sender Information, sender fields must match From information when <ePostageMailerReporting>=1 · 1 - (ePostage sender information in SSF) · 2 - (ePostage sender information through DES) · 3 - (ePostage sender information using child MID)
+				#          * *:sender_first_name* (String) — First Name of Sender. For example: <SenderFirstName>Adam </ SenderFirstName> Required when <ePostageMailerReporting>=1
+				#          * *:sender_last_name* (String) — Last Name of Sender. For example: <SenderLastName>Smith </ SenderLastName> Required when <ePostageMailerReporting>=1
+				#          * *:sender_business_name* (String) — Values for Sender Business Name must be sent. For example: <SenderBusinessName>USPS</ SenderBusinessName>
+				#          * *:sender_address1* (String) — Sender address line. Use this tag for full address (Address1 and Address2) Must match Address1 and Address2 or will produce an error. For example: <SenderAddress1>STE 150 10 Elm Street </SenderAddress1> Required when <ePostageMailerReporting>=1
+				#          * *:sender_city* (String) — Sender city For example: <SenderCity>BETHESDA</ SenderCity> Required when <ePostageMailerReporting>=1
+				#          * *:sender_state* (String) — Sender state. For example: <SenderState>MD</ SenderState> Required when <ePostageMailerReporting>=1
+				#          * *:sender_zip5* (String) — Sender ZIP code. For example: <SenderZip5>20212</SenderZip5> Required when <ePostageMailerReporting>=1
+				#          * *:sender_phone* (String) — Sender Phone #. 10 digits Required (including area code), with no punctuation. For example: <SenderPhone>2125551234</ SenderPhone> Required when <ePostageMailerReporting>=1
+				#          * *:sender_email* (String) — E-mail Address of Sender. Valid e-mail addresses must be used. For example: <SenderEMail>cpapple@email.com</ SenderEMail> Required when <ePostageMailerReporting>=1
+				#          * *:remaining_barcodes* (required, String) — This contains the number of remaining barcodes that can be generated for this particular request.
+				#          * *:chargeback_code* (String) — Used in Shipping Services File v2.0 for G-10 labels. Contact your Technical Integration Specialist for details.
+def e_vs_first_class_mail_intl(options = {})
 					throw ArgumentError.new('Required arguments :e_vs_first_class_mail_intl_request missing') if options[:e_vs_first_class_mail_intl_request].nil?
 					throw ArgumentError.new('Required arguments :e_vs_first_class_mail_intl_request, :revision missing') if options[:e_vs_first_class_mail_intl_request][:revision].nil?
 

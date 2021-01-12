@@ -25,7 +25,7 @@ namespace :usps do
           row_data = {}
           columns.each_with_index do |k, i|
             row_data[k.to_s.gsub(/[[:space:]]+/, ' ').strip] =
-              row[i].is_a? String ? row[i].to_s.gsub(/[[:space:]]+/, ' ').strip : row[i]
+              row[i].is_a?(String) ? row[i].to_s.gsub(/[[:space:]]+/, ' ').strip : row[i]
           end
           row_data
         end

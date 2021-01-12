@@ -6,36 +6,19 @@ module Usps
 	module Api
 		module Endpoints
 			module Verify
-				#
-				# Address Validation API
-				#
-				#
-				# @option option [(Alias)] :AddressValidateRequest (Required)
-				# - API = AddressValidateRequest
-				#   @option option [String] :Revision (Required)
-				#   - Integer value used to return of all available response fields. Set this value to 1 to return all currently documented response fields. Example: Revision>1</Revision>
-				#   @option option [(group)] :Address (Required)
-				#   - Up to 5 address verifications can be included per transaction.
-				#     @option option [String] :FirmName (Optional)
-				#     - Firm Name Example:<FirmName>XYZ Corp.</FirmName>
-				#     @option option [String] :Address1 (Optional)
-				#     - Delivery Address in the destination address. May contain secondary unit designator, such as APT or SUITE, for Accountable mail.)
-				#     @option option [String] :Address2 (Required)
-				#     - Delivery Address in the destination address. Required for all mail and packages, however 11-digit Destination Delivery Point ZIP+4 Code can be provided as an alternative in the Detail 1 Record.
-				#     @option option [String] :City (Optional)
-				#     - City name of the destination address.
-				#     @option option [String] :State (Optional)
-				#     - Two-character state code of the destination address.
-				#     @option option [String] :Urbanization (Optional)
-				#     - Urbanization. For Puerto Rico addresses only.
-				#     @option option [String] :Zip5 (Optional)
-				#     - Destination 5-digit ZIP Code. Numeric values (0-9) only. If International, all zeroes.
-				#     @option option [String] :Zip4 (Optional)
-				#     - Destination ZIP+4 Numeric values (0-9) only. If International, all zeroes. Default to spaces if not available.
-
-				#
-				# @see 
-				def verify(options = {})
+				# @param [Hash] options
+				# @option options [required, Hash] address_validate_request API = AddressValidateRequest
+				#  * *:revision* (required, String) — Integer value used to return of all available response fields. Set this value to 1 to return all currently documented response fields. Example: Revision>1</Revision>
+				#  * *:address* (required, Hash) — Up to 5 address verifications can be included per transaction.
+				#    * *:firm_name* (String) — Firm Name Example:<FirmName>XYZ Corp.</FirmName>
+				#    * *:address1* (String) — Delivery Address in the destination address. May contain secondary unit designator, such as APT or SUITE, for Accountable mail.)
+				#    * *:address2* (required, String) — Delivery Address in the destination address. Required for all mail and packages, however 11-digit Destination Delivery Point ZIP+4 Code can be provided as an alternative in the Detail 1 Record.
+				#    * *:city* (String) — City name of the destination address.
+				#    * *:state* (String) — Two-character state code of the destination address.
+				#    * *:urbanization* (String) — Urbanization. For Puerto Rico addresses only.
+				#    * *:zip5* (String) — Destination 5-digit ZIP Code. Numeric values (0-9) only. If International, all zeroes.
+				#    * *:zip4* (String) — Destination ZIP+4 Numeric values (0-9) only. If International, all zeroes. Default to spaces if not available.
+def verify(options = {})
 					throw ArgumentError.new('Required arguments :address_validate_request missing') if options[:address_validate_request].nil?
 					throw ArgumentError.new('Required arguments :address_validate_request, :revision missing') if options[:address_validate_request][:revision].nil?
 					throw ArgumentError.new('Required arguments :address_validate_request, :address missing') if options[:address_validate_request][:address].nil?

@@ -6,29 +6,23 @@ module Usps
 	module Api
 		module Endpoints
 			module PTSTPod
-				#
-				# Track Proof of Delivery API
-				#
 				# Overview
-				#
-				# @option option [(Alias)] :PTSTPodRequest (Required)
-				#   @option option [String] :TrackId (Required)
-				#   @option option [integer] :MpSuffix (Required)
-				#   @option option [String] :MpDate (Required)
-				#   @option option [String] :RequestType (Required)
-				#   @option option [String] :FirstName (Required)
-				#   @option option [String] :LastName (Required)
-				#   @option option [String] :Email1 (Optional)
-				#   @option option [String] :Email2 (Optional)
-				#   @option option [String] :Email3 (Optional)
-				#   @option option [String] :CustRegID (Required)
-				#   @option option [String] :TableCode (Required)
-				#   @option option [String] :ClientIp (Optional)
-				#   @option option [String] :SourceId (Optional)
-
-				#
-				# @see 
-				def ptst_pod(options = {})
+				# @param [Hash] options
+				# @option options [required, Hash] ptst_pod_request 
+				#  * *:track_id* (required, String)
+				#  * *:mp_suffix* (required, integer)
+				#  * *:mp_date* (required, String)
+				#  * *:request_type* (required, String)
+				#  * *:first_name* (required, String)
+				#  * *:last_name* (required, String)
+				#  * *:email1* (String)
+				#  * *:email2* (String)
+				#  * *:email3* (String)
+				#  * *:cust_reg_id* (required, String)
+				#  * *:table_code* (required, String)
+				#  * *:client_ip* (String)
+				#  * *:source_id* (String)
+def ptst_pod(options = {})
 					throw ArgumentError.new('Required arguments :ptst_pod_request missing') if options[:ptst_pod_request].nil?
 					throw ArgumentError.new('Required arguments :ptst_pod_request, :track_id missing') if options[:ptst_pod_request][:track_id].nil?
 					throw ArgumentError.new('Required arguments :ptst_pod_request, :mp_suffix missing') if options[:ptst_pod_request][:mp_suffix].nil?

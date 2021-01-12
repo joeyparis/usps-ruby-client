@@ -1,6 +1,3 @@
-<%= ErubisHelper.tabs(static_indentation) %>#<%= ErubisHelper.spaces(indentation*2) %>@option option [<%= option[:type] %>] :<%= option[:name] %> (<%= option[:required] ? 'Required' : 'Optional' %>)
-<% if option[:description].present? %>
-<%= ErubisHelper.tabs(static_indentation) %>#<%= ErubisHelper.spaces(indentation*2) %>- <%= option[:description] %>
-<% end %>
+<%= ErubisHelper.tabs(static_indentation) %>#<%= ErubisHelper.spaces(indentation*2) %> * *:<%= option[:name].underscore %>* (<%= option[:required] ? 'required, ' : '' %><%= ['(alias)', '(group)'].any?(option[:type].downcase) ? 'Hash' : option[:type] %>)<% if option[:description] %> — <%= option[:description] %><% end %>
 <% option[:children].each do |child_option_name, child_option| %>
 <%= Erubis::Eruby.new(File.read('lib/usps/api/templates/_options.erb')).result(option: child_option, parents: [], indentation: indentation + 1, static_indentation: static_indentation) %><% end %>

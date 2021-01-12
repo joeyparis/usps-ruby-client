@@ -6,9 +6,6 @@ module Usps
 	module Api
 		module Endpoints
 			module PTSPod
-				#
-				# Proof of Delivery API
-				#
 				# Proof of
 				# Delivery is a letter that includes the recipient's name and a copy of their
 				# signature. The Proof of Delivery API
@@ -17,32 +14,29 @@ module Usps
 				# mailer ID and how you will be utilizing this API. A mailer identification
 				# number (MID) is a 6 or 9-digit number assigned to a customer through the USPS
 				# Business Customer Gateway (BCG). Please refer to the following links for help:
-				#
-				# @option option [(Alias)] :PTSPodRequest (Optional)
-				#   @option option [String] :TrackId (Required)
-				#   @option option [String] :ClientIp (Optional)
-				#   @option option [String] :SourceId (Optional)
-				#   @option option [integer] :MpSuffix (Required)
-				#   @option option [String] :MpDate (Required)
-				#   @option option [String] :RequestType (Required)
-				#   @option option [String] :FirstName (Required)
-				#   @option option [String] :LastName (Required)
-				#   @option option [String] :Email1 (Optional)
-				#   @option option [String] :Email2 (Optional)
-				#   @option option [String] :Email3 (Optional)
-				#   @option option [String] :FaxNumber (Optional)
-				#   @option option [String] :AddressLine1 (Optional)
-				#   @option option [String] :AddressLine2 (Optional)
-				#   @option option [String] :City (Optional)
-				#   @option option [String] :State (Optional)
-				#   @option option [String] :Zip (Optional)
-				#   @option option [Boolean] :VerifyAddress (Optional)
-				#   @option option [String] :TableCode (Required)
-				#   @option option [String] :CustRegID (Optional)
-
-				#
-				# @see 
-				def pts_pod(options = {})
+				# @param [Hash] options
+				# @option options [required, Hash] pts_pod_request 
+				#  * *:track_id* (required, String)
+				#  * *:client_ip* (String)
+				#  * *:source_id* (String)
+				#  * *:mp_suffix* (required, integer)
+				#  * *:mp_date* (required, String)
+				#  * *:request_type* (required, String)
+				#  * *:first_name* (required, String)
+				#  * *:last_name* (required, String)
+				#  * *:email1* (String)
+				#  * *:email2* (String)
+				#  * *:email3* (String)
+				#  * *:fax_number* (String)
+				#  * *:address_line1* (String)
+				#  * *:address_line2* (String)
+				#  * *:city* (String)
+				#  * *:state* (String)
+				#  * *:zip* (String)
+				#  * *:verify_address* (Boolean)
+				#  * *:table_code* (required, String)
+				#  * *:cust_reg_id* (String)
+def pts_pod(options = {})
 					request = build_request(:pts_pod, options)
 					get('https://secure.shippingapis.com/ShippingAPI.dll', {
 						API: 'PTSPod',

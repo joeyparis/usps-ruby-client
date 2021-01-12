@@ -6,78 +6,43 @@ module Usps
 	module Api
 		module Endpoints
 			module IntlRateV2
-				#
-				# International Rates API
-				#
 				# The
 				# IntlRateV2 API lets customers calculate the rate for international packages and
 				# envelopes given the weight and dimensions of the item. The IntlRateV2 API
 				# limits the data requested to twenty-five (25) packages per transaction. For
 				# specifications such as package dimensions, delivery information, etc, please refer to the International Mail Manual (IMM) at
 				# http://pe.usps.com/.
-				#
-				# @option option [(Alias)] :IntlRateV2Request (Required)
-				# - API=IntlRateV2 This API returns the current international USPS postage corresponding to the parameters given.
-				#   @option option [String] :Revision (Optional)
-				#   - Set this value to “2” to return all currently documented response fields. For example: <Revision>2</Revsion>
-				#   @option option [(Group)] :Package (Optional)
-				#   - Opening Package tag.
-				#     @option option [NMTOKEN] :ID (Required)
-				#     - No restriction on number or type of characters provided valid XML syntax and unique to request. For example: <Package ID="0">...</Package>
-				#     @option option [Integer] :Pounds (Required)
-				#     - Value must be numeric. Package weight generally cannot exceed 70 pounds. Maximum Decimal places are 8. Refer to the International Mail Manual (IMM) for weight requirements per country and mail service. The IMM can be found at the Postal Explorer web site. For example: <Pounds>2</Pounds> <Pounds>2.12345678</Pounds>
-				#     @option option [Decimal] :Ounces (Required)
-				#     - Value must be numeric. Package weight generally cannot exceed 70 pounds. Maximum Decimal places are 8. Refer to the International Mail Manual (IMM) for weight requirements per country and mail service. The IMM can be found at the Postal Explorer web site. For example: <Ounces>4</Ounces> <Ounces>4.12345678</Ounces>
-				#     @option option [Boolean] :Machinable (Optional)
-				#     - Indicates whether or not the item is machinable. A surcharge is applied to a First-Class Mail International item if it has one or more non-machinable characteristics. See International Mail Manual (IMM) Section 241.217 for more information. For example: <Machinable>True</Machinable>
-				#     @option option [String] :MailType (Required)
-				#     - Package type being shipped. For example: <MailType>Package</MailType>
-				#     @option option [(Group)] :GXG (Optional)
-				#     - If GXG rate is desired, then this group must be specified. Note that if this data precludes delivery, due to size or availability of service at the destination, then GXG rates simply will not be returned (not an error condition.)
-				#       @option option [String] :POBoxFlag (Required)
-				#       - Specify as "Y" if the destination is a post office box. For example: <POBoxFlag>Y</POBoxFlag>
-				#       @option option [String] :GiftFlag (Required)
-				#       - Specify as "Y" if the package contains a gift. For example: <GiftFlag>Y</GiftFlag>
-				#       @option option [String] :ValueOfContents (Required)
-				#       - If specified, used to compute Insurance fee (if insurance is available for service and destination). For example: <ValueOfContents>103.00</ValueOfContents>
-				#       @option option [String] :Country (Required)
-				#       - Entries must be from the USPS list of valid countries from the International Country Listings. To access the International Country Listings, go to the Index of Countries and Localities. For example: <Country>Albania</Country>
-				#       @option option [String] :Container (Optional)
-				#       - Note: This tag has been deprecated. <Container> tag and any values within the <Container> tag will not result in an error response and will not impact rates that are returned.
-				#       @option option [String] :Size (Optional)
-				#       - Note: This tag has been deprecated <Size> tag and any values within the <Size> tag will not result in an error response and will not impact rates that are returned.
-				#       @option option [Integer] :Width (Optional)
-				#       - Value must be numeric. Units are inches. If partial dimensions are provided, an error response will return. Length, Width, Height are required for accurate pricing of a rectangular package when any dimension of the item exceeds 12 inches. In addition, Girth is required only for a non-rectangular package in addition to Length, Width, Height when any dimension of the package exceeds 12 inches. For rectangular packages, the Girth dimension must be left blank as this dimension is to only be used for non-rectangular packages. For more details on dimensional weight pricing, please reference the Domestic Mail Manual Section 123.1.4 for Retail Mail and Section 223.1.6 for Commercial Mail. https://pe.usps.com/text/dmm300/index.htm
-				#       @option option [Integer] :Length (Optional)
-				#       - Value must be numeric. Units are inches. If partial dimensions are provided, an error response will return. Length, Width, Height are required for accurate pricing of a rectangular package when any dimension of the item exceeds 12 inches. In addition, Girth is required only for a non-rectangular package in addition to Length, Width, Height when any dimension of the package exceeds 12 inches. For rectangular packages, the Girth dimension must be left blank as this dimension is to only be used for non-rectangular packages. For more details on dimensional weight pricing, please reference the Domestic Mail Manual Section 123.1.4 for Retail Mail and Section 223.1.6 for Commercial Mail. https://pe.usps.com/text/dmm300/index.htm
-				#       @option option [Integer] :Height (Optional)
-				#       - Value must be numeric. Units are inches. If partial dimensions are provided, an error response will return. Length, Width, Height are required for accurate pricing of a rectangular package when any dimension of the item exceeds 12 inches. In addition, Girth is required only for a non-rectangular package in addition to Length, Width, Height when any dimension of the package exceeds 12 inches. For rectangular packages, the Girth dimension must be left blank as this dimension is to only be used for non-rectangular packages. For more details on dimensional weight pricing, please reference the Domestic Mail Manual Section 123.1.4 for Retail Mail and Section 223.1.6 for Commercial Mail. https://pe.usps.com/text/dmm300/index.htm
-				#       @option option [Integer] :Girth (Optional)
-				#       - Value must be numeric. Units are inches. If partial dimensions are provided, an error response will return. Length, Width, Height are required for accurate pricing of a rectangular package when any dimension of the item exceeds 12 inches. In addition, Girth is required only for a non-rectangular package in addition to Length, Width, Height when any dimension of the package exceeds 12 inches. For rectangular packages, the Girth dimension must be left blank as this dimension is to only be used for non-rectangular packages. For more details on dimensional weight pricing, please reference the Domestic Mail Manual Section 123.1.4 for Retail Mail and Section 223.1.6 for Commercial Mail. https://pe.usps.com/text/dmm300/index.htm
-				#       @option option [String] :OriginZip (Optional)
-				#       - Available when IntlRateV2Request [Revision='2']. Origin ZIP Code is required to determine Priority Mail International price to Canadian destinations and is used to determine mail-ability of Global Express Guaranteed. When provided, the response will return a list of Post Office locations where GXG is accepted. The Origin ZIP Code must be valid. For example: <OriginZip>20770</OriginZip>
-				#       @option option [String] :CommercialFlag (Optional)
-				#       - Returns commercial base postage. For example: <CommercialFlag>Y<CommercialFlag>
-				#       @option option [String] :CommercialPlusFlag (Optional)
-				#       - Returns commercial plus postage. For example: <CommercialPlusFlag>Y<CommercialPlusFlag>
-				#       @option option [(Group)] :ExtraServices (Optional)
-				#       - Available when IntlRateV2Request[Revision='2']. Groups the ExtraService elements.
-				#         @option option [Extra Service Name] :ExtraService (Optional)
-				#         - [{"Extra Service Name"=>"Registered Mail", "ServiceID"=>"103"}, {"Extra Service Name"=>"Insurance – Global Express Guaranteed", "ServiceID"=>"106"}, {"Extra Service Name"=>"Insurance – Priority Mail International", "ServiceID"=>"108"}, {"Extra Service Name"=>"Return Receipt", "ServiceID"=>"105"}, {"Extra Service Name"=>"Certificate of Mailing", "ServiceID"=>"100"}, {"Extra Service Name"=>"Electronic USPS Delivery Confirmation International", "ServiceID"=>"109"}]
-				#         @option option [DateTime] :AcceptanceDateTime (Optional)
-				#         - Available when IntlRateV2Request[Revision='2']. Date and Time the package is accepted by USPS. The AcceptanceDateTime tag along with the DestinationPostalCode and OriginZip is used to calculate the GuaranteeAvailability and also GuaranteeAvailability response tag for PMEI services in Kahala countries. ISO 8601 formatted date. YYYY-MM-DDThh:mm:ss+/-hh:mm For example, 2014-01-22T14:30:51-06:00
-				#         @option option [String] :DestinationPostalCode (Optional)
-				#         - Available when IntlRateV2Request[Revision='2']. Destination Postal Code The AcceptanceDateTime tag along with the DestinationPostalCode and OriginZip is used to calculate the GuaranteeAvailability and also GuaranteeAvailability response tag for PMEI services in Kahala countries.
-				#         @option option [(Group)] :Content (Optional)
-				#         - Used to describe the contents of the package.
-				#           @option option [String] :ContentType (Optional)
-				#           - Contains the enumerated description of the items in the package. “NonnegotiableDocument” and “Documents” both signify mailable non-negotiable documents and are insured automatically for up to $100, though Insurance will not be returned as an extra service. Additional Insurance cannot be purchased. Any non-document ContentType values are insured automatically for up to $200 and Insurance will be returned as an explicit extra service in the response. Additional Insurance can be purchased for values $200 and greater.
-				#           @option option [String] :ContentDescription (Optional)
-				#           - For future use
-
-				#
-				# @see 
-				def intl_rate_v2(options = {})
+				# @param [Hash] options
+				# @option options [required, Hash] intl_rate_v2_request API=IntlRateV2 This API returns the current international USPS postage corresponding to the parameters given.
+				#  * *:revision* (String) — Set this value to “2” to return all currently documented response fields. For example: <Revision>2</Revsion>
+				#  * *:package* (Hash) — Opening Package tag.
+				#    * *:id* (required, NMTOKEN) — No restriction on number or type of characters provided valid XML syntax and unique to request. For example: <Package ID="0">...</Package>
+				#    * *:pounds* (required, Integer) — Value must be numeric. Package weight generally cannot exceed 70 pounds. Maximum Decimal places are 8. Refer to the International Mail Manual (IMM) for weight requirements per country and mail service. The IMM can be found at the Postal Explorer web site. For example: <Pounds>2</Pounds> <Pounds>2.12345678</Pounds>
+				#    * *:ounces* (required, Decimal) — Value must be numeric. Package weight generally cannot exceed 70 pounds. Maximum Decimal places are 8. Refer to the International Mail Manual (IMM) for weight requirements per country and mail service. The IMM can be found at the Postal Explorer web site. For example: <Ounces>4</Ounces> <Ounces>4.12345678</Ounces>
+				#    * *:machinable* (Boolean) — Indicates whether or not the item is machinable. A surcharge is applied to a First-Class Mail International item if it has one or more non-machinable characteristics. See International Mail Manual (IMM) Section 241.217 for more information. For example: <Machinable>True</Machinable>
+				#    * *:mail_type* (required, String) — Package type being shipped. For example: <MailType>Package</MailType>
+				#    * *:gxg* (Hash) — If GXG rate is desired, then this group must be specified. Note that if this data precludes delivery, due to size or availability of service at the destination, then GXG rates simply will not be returned (not an error condition.)
+				#      * *:po_box_flag* (required, String) — Specify as "Y" if the destination is a post office box. For example: <POBoxFlag>Y</POBoxFlag>
+				#      * *:gift_flag* (required, String) — Specify as "Y" if the package contains a gift. For example: <GiftFlag>Y</GiftFlag>
+				#      * *:value_of_contents* (required, String) — If specified, used to compute Insurance fee (if insurance is available for service and destination). For example: <ValueOfContents>103.00</ValueOfContents>
+				#      * *:country* (required, String) — Entries must be from the USPS list of valid countries from the International Country Listings. To access the International Country Listings, go to the Index of Countries and Localities. For example: <Country>Albania</Country>
+				#      * *:container* (String) — Note: This tag has been deprecated. <Container> tag and any values within the <Container> tag will not result in an error response and will not impact rates that are returned.
+				#      * *:size* (String) — Note: This tag has been deprecated <Size> tag and any values within the <Size> tag will not result in an error response and will not impact rates that are returned.
+				#      * *:width* (Integer) — Value must be numeric. Units are inches. If partial dimensions are provided, an error response will return. Length, Width, Height are required for accurate pricing of a rectangular package when any dimension of the item exceeds 12 inches. In addition, Girth is required only for a non-rectangular package in addition to Length, Width, Height when any dimension of the package exceeds 12 inches. For rectangular packages, the Girth dimension must be left blank as this dimension is to only be used for non-rectangular packages. For more details on dimensional weight pricing, please reference the Domestic Mail Manual Section 123.1.4 for Retail Mail and Section 223.1.6 for Commercial Mail. https://pe.usps.com/text/dmm300/index.htm
+				#      * *:length* (Integer) — Value must be numeric. Units are inches. If partial dimensions are provided, an error response will return. Length, Width, Height are required for accurate pricing of a rectangular package when any dimension of the item exceeds 12 inches. In addition, Girth is required only for a non-rectangular package in addition to Length, Width, Height when any dimension of the package exceeds 12 inches. For rectangular packages, the Girth dimension must be left blank as this dimension is to only be used for non-rectangular packages. For more details on dimensional weight pricing, please reference the Domestic Mail Manual Section 123.1.4 for Retail Mail and Section 223.1.6 for Commercial Mail. https://pe.usps.com/text/dmm300/index.htm
+				#      * *:height* (Integer) — Value must be numeric. Units are inches. If partial dimensions are provided, an error response will return. Length, Width, Height are required for accurate pricing of a rectangular package when any dimension of the item exceeds 12 inches. In addition, Girth is required only for a non-rectangular package in addition to Length, Width, Height when any dimension of the package exceeds 12 inches. For rectangular packages, the Girth dimension must be left blank as this dimension is to only be used for non-rectangular packages. For more details on dimensional weight pricing, please reference the Domestic Mail Manual Section 123.1.4 for Retail Mail and Section 223.1.6 for Commercial Mail. https://pe.usps.com/text/dmm300/index.htm
+				#      * *:girth* (Integer) — Value must be numeric. Units are inches. If partial dimensions are provided, an error response will return. Length, Width, Height are required for accurate pricing of a rectangular package when any dimension of the item exceeds 12 inches. In addition, Girth is required only for a non-rectangular package in addition to Length, Width, Height when any dimension of the package exceeds 12 inches. For rectangular packages, the Girth dimension must be left blank as this dimension is to only be used for non-rectangular packages. For more details on dimensional weight pricing, please reference the Domestic Mail Manual Section 123.1.4 for Retail Mail and Section 223.1.6 for Commercial Mail. https://pe.usps.com/text/dmm300/index.htm
+				#      * *:origin_zip* (String) — Available when IntlRateV2Request [Revision='2']. Origin ZIP Code is required to determine Priority Mail International price to Canadian destinations and is used to determine mail-ability of Global Express Guaranteed. When provided, the response will return a list of Post Office locations where GXG is accepted. The Origin ZIP Code must be valid. For example: <OriginZip>20770</OriginZip>
+				#      * *:commercial_flag* (String) — Returns commercial base postage. For example: <CommercialFlag>Y<CommercialFlag>
+				#      * *:commercial_plus_flag* (String) — Returns commercial plus postage. For example: <CommercialPlusFlag>Y<CommercialPlusFlag>
+				#      * *:extra_services* (Hash) — Available when IntlRateV2Request[Revision='2']. Groups the ExtraService elements.
+				#        * *:extra_service* (Extra Service Name) — [{"Extra Service Name"=>"Registered Mail", "ServiceID"=>"103"}, {"Extra Service Name"=>"Insurance – Global Express Guaranteed", "ServiceID"=>"106"}, {"Extra Service Name"=>"Insurance – Priority Mail International", "ServiceID"=>"108"}, {"Extra Service Name"=>"Return Receipt", "ServiceID"=>"105"}, {"Extra Service Name"=>"Certificate of Mailing", "ServiceID"=>"100"}, {"Extra Service Name"=>"Electronic USPS Delivery Confirmation International", "ServiceID"=>"109"}]
+				#        * *:acceptance_date_time* (DateTime) — Available when IntlRateV2Request[Revision='2']. Date and Time the package is accepted by USPS. The AcceptanceDateTime tag along with the DestinationPostalCode and OriginZip is used to calculate the GuaranteeAvailability and also GuaranteeAvailability response tag for PMEI services in Kahala countries. ISO 8601 formatted date. YYYY-MM-DDThh:mm:ss+/-hh:mm For example, 2014-01-22T14:30:51-06:00
+				#        * *:destination_postal_code* (String) — Available when IntlRateV2Request[Revision='2']. Destination Postal Code The AcceptanceDateTime tag along with the DestinationPostalCode and OriginZip is used to calculate the GuaranteeAvailability and also GuaranteeAvailability response tag for PMEI services in Kahala countries.
+				#        * *:content* (Hash) — Used to describe the contents of the package.
+				#          * *:content_type* (String) — Contains the enumerated description of the items in the package. “NonnegotiableDocument” and “Documents” both signify mailable non-negotiable documents and are insured automatically for up to $100, though Insurance will not be returned as an extra service. Additional Insurance cannot be purchased. Any non-document ContentType values are insured automatically for up to $200 and Insurance will be returned as an explicit extra service in the response. Additional Insurance can be purchased for values $200 and greater.
+				#          * *:content_description* (String) — For future use
+def intl_rate_v2(options = {})
 					throw ArgumentError.new('Required arguments :intl_rate_v2_request missing') if options[:intl_rate_v2_request].nil?
 
 					request = build_request(:intl_rate_v2, options)

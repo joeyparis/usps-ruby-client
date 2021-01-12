@@ -6,9 +6,6 @@ module Usps
 	module Api
 		module Endpoints
 			module HFPFacilityInfo
-				#
-				# Hold for Pickup Facility Information API
-				#
 				# Hold For
 				# Pickup service is available at approximately 31,000 USPS locations. This API
 				# will list US Postal Service Facilities where Hold-For-Pickup service is
@@ -20,23 +17,14 @@ module Usps
 				# within five calendar days. Hold For Pickup service
 				# lets customers pick up shipments when it is convenient for them, with the
 				# assurance that their shipments are held safely and securely.
-				#
-				# @option option [(Alias)] :HFPFacilityInfoRequest (Required)
-				# - API=HFPFacilityInfo
-				#   @option option [String] :PickupCity (Required)
-				#   - Either City/State or ZIP code must be specified. When only city and state are provided, all pickup facilities with addresses within that city and state will be returned. For example: <PickupCity>Boston</PickupCity>
-				#   @option option [String] :PickupState (Required)
-				#   - Either City/State or ZIP code must be specified. For example: <PickupState>MA</PickupState>
-				#   @option option [String] :PickupZIP (Required)
-				#   - Either City/State or ZIP code must be specified. When PickupZIP provided without PickupZIP4, all pickup facilities that service that ZIP code are returned. For example: <PickupZIP>02111</PickupZIP>
-				#   @option option [String] :PickupZIP4 (Required)
-				#   - If PickupZIP is specified, then PickupZIP4 may also be specified. This will match to a single pickup facility with the given nine-digit ZIP code. For example: <PickupZIP4>9998</PickupZIP4>
-				#   @option option [String] :Service (Optional)
-				#   - For future use. May be omitted.
-
-				#
-				# @see 
-				def hfp_facility_info(options = {})
+				# @param [Hash] options
+				# @option options [required, Hash] hfp_facility_info_request API=HFPFacilityInfo
+				#  * *:pickup_city* (required, String) — Either City/State or ZIP code must be specified. When only city and state are provided, all pickup facilities with addresses within that city and state will be returned. For example: <PickupCity>Boston</PickupCity>
+				#  * *:pickup_state* (required, String) — Either City/State or ZIP code must be specified. For example: <PickupState>MA</PickupState>
+				#  * *:pickup_zip* (required, String) — Either City/State or ZIP code must be specified. When PickupZIP provided without PickupZIP4, all pickup facilities that service that ZIP code are returned. For example: <PickupZIP>02111</PickupZIP>
+				#  * *:pickup_zip4* (required, String) — If PickupZIP is specified, then PickupZIP4 may also be specified. This will match to a single pickup facility with the given nine-digit ZIP code. For example: <PickupZIP4>9998</PickupZIP4>
+				#  * *:service* (String) — For future use. May be omitted.
+def hfp_facility_info(options = {})
 					throw ArgumentError.new('Required arguments :hfp_facility_info_request missing') if options[:hfp_facility_info_request].nil?
 					throw ArgumentError.new('Required arguments :hfp_facility_info_request, :pickup_city missing') if options[:hfp_facility_info_request][:pickup_city].nil?
 					throw ArgumentError.new('Required arguments :hfp_facility_info_request, :pickup_state missing') if options[:hfp_facility_info_request][:pickup_state].nil?

@@ -6,20 +6,13 @@ module Usps
 	module Api
 		module Endpoints
 			module CityStateLookup
-				#
-				# CityStateLookup API
-				#
 				# City/State Lookup API
 				# returns the city and state corresponding to the given ZIP Code. The CityStateLookup API processes up to five lookups per request.
-				#
-				# @option option [(Alias)] :CityStateLookupRequest (Required)
-				# - API= CityStateLookupRequest
-				#   @option option [(Group)] :ZipCode (Required)
-				#     @option option [Integer] :Zip5 (Required)
-
-				#
-				# @see 
-				def city_state_lookup(options = {})
+				# @param [Hash] options
+				# @option options [required, Hash] city_state_lookup_request API= CityStateLookupRequest
+				#  * *:zip_code* (required, Hash) — 
+				#    * *:zip5* (required, Integer) — 
+def city_state_lookup(options = {})
 					throw ArgumentError.new('Required arguments :city_state_lookup_request missing') if options[:city_state_lookup_request].nil?
 					throw ArgumentError.new('Required arguments :city_state_lookup_request, :zip_code missing') if options[:city_state_lookup_request][:zip_code].nil?
 					throw ArgumentError.new('Required arguments :city_state_lookup_request, :zip_code, :zip5 missing') if options[:city_state_lookup_request][:zip_code][:zip5].nil?

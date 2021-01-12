@@ -6,28 +6,22 @@ module Usps
 	module Api
 		module Endpoints
 			module PTSRre
-				#
-				# Return Receipt Electronic API
-				#
 				# Overview
-				#
-				# @option option [(Alias)] :PTSRreRequest (Required)
-				#   @option option [String] :TrackId (Required)
-				#   @option option [String] :ClientIp (Optional)
-				#   @option option [String] :SourceId (Optional)
-				#   @option option [integer] :MpSuffix (Required)
-				#   @option option [String] :MpDate (Required)
-				#   @option option [String] :FirstName (Required)
-				#   @option option [String] :LastName (Required)
-				#   @option option [String] :Email1 (Required)
-				#   @option option [String] :Email2 (Optional)
-				#   @option option [String] :Email3 (Optional)
-				#   @option option [String] :TableCode (Required)
-				#   @option option [String] :CustRegID (Optional)
-
-				#
-				# @see 
-				def pts_rre(options = {})
+				# @param [Hash] options
+				# @option options [required, Hash] pts_rre_request 
+				#  * *:track_id* (required, String)
+				#  * *:client_ip* (String)
+				#  * *:source_id* (String)
+				#  * *:mp_suffix* (required, integer)
+				#  * *:mp_date* (required, String)
+				#  * *:first_name* (required, String)
+				#  * *:last_name* (required, String)
+				#  * *:email1* (required, String)
+				#  * *:email2* (String)
+				#  * *:email3* (String)
+				#  * *:table_code* (required, String)
+				#  * *:cust_reg_id* (String)
+def pts_rre(options = {})
 					throw ArgumentError.new('Required arguments :pts_rre_request missing') if options[:pts_rre_request].nil?
 					throw ArgumentError.new('Required arguments :pts_rre_request, :track_id missing') if options[:pts_rre_request][:track_id].nil?
 					throw ArgumentError.new('Required arguments :pts_rre_request, :mp_suffix missing') if options[:pts_rre_request][:mp_suffix].nil?

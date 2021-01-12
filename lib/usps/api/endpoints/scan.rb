@@ -6,68 +6,37 @@ module Usps
 	module Api
 		module Endpoints
 			module SCAN
-				#
-				# SCAN API
-				#
 				# The SCAN API allows integrators to consolidate
 				# multiple domestic and international labels and custom forms through one
 				# Electronic File Number (EFN) and physical SCAN Form (PS Form 5630 or 3152). The
 				# API operates as follows:
-				#
-				# @option option [(Alias)] :SCANRequest (Required)
-				# - API=SCAN
-				#   @option option [(Group)] :Option (Optional)
-				#   - Groups form information
-				#     @option option [String] :Form (Optional)
-				#     - Designates desired label option selected by customer. Enter one of the valid entries: ‘3152’ generates PS Form 3152. ‘5630’ generates PS Form 5630. For example: <Form>3152</Form>
-				#     @option option [String] :FromName (Required)
-				#     - Name of sender. Example: <FromName>Joe Smith</FromName>
-				#     @option option [String] :FromFirm (Optional)
-				#     - Company name. Example: <FromFirm>ABC Corp.</FromFirm>
-				#     @option option [String] :FromAddress1 (Optional)
-				#     - From address line 1. Denote apartment or suite number. Example: <FromAddress1>Apt. 3C</FromAddress1>
-				#     @option option [String] :FromAddress2 (Required)
-				#     - From address line 2. Denote street/structure number. Example: <FromAddress2>475 L’Enfant Plaza SW</FromAddress2>
-				#     @option option [String] :FromCity (Required)
-				#     - From city. Example: <FromCity>Greenbelt</FromCity>
-				#     @option option [String] :FromState (Required)
-				#     - From state. Example: <FromState>MD</FromState>
-				#     @option option [String] :FromZip5 (Required)
-				#     - From ZIP Code. Must be a valid ZIP5 Code. Example: <FromZip5>20770</FromZip5>
-				#     @option option [String] :FromZip4 (Optional)
-				#     - From ZIP Code+4. Example: <FromZip4>1234</FromZip4>
-				#     @option option [(Group)] :Shipment (Optional)
-				#     - Groups shipment information
-				#       @option option [(Group)] :PackageDetail (Optional)
-				#       - Groups package detail information
-				#         @option option [String] :PkgBarcode (Required)
-				#         - Individual package barcodes. Example: <PkgBarcode>42020260910180521390702413570 </PkgBarcode> Note: The SCAN API can contain no more than 1,000 package barcodes in a single request. If exceeded, 'Total PackageDetail items exceeded 1000.’ error will return”
-				#         @option option [(Group)] :SpecialService (Optional)
-				#         - FOR FUTURE USE. Groups extra service information.
-				#           @option option [String] :SpcServCode (Required)
-				#           - FOR FUTURE USE. If present, must be <SpcServFee>. From Extra Service Code table. Example: <SpcServCode>01</SpcServCode>
-				#           @option option [String] :SpcServFee (Required)
-				#           - FOR FUTURE USE. Fee for Extra Service. Example: <SpcServFee>00275</SpcServFee>
-				#           @option option [String] :EMail (Optional)
-				#           - FOR FUTURE USE. Email address of acceptance scan event recipient. Example: <EMail>john.smith@abc.com</EMail>
-				#           @option option [Boolean] :CloseManifest (Optional)
-				#           - Used to include all labels for the submitted UserID. There are two values: “ALL” will close all labels for the submitted USERID. “SHIPDATE” will close all the labels for the submitted USERID that have the <Shipdate> tag matching the value in the <MailDate> tag. Note: When <CloseManifest> is indicated in the request, the following two response fields are eligible to return if conditions are met: · <MaxPackagesExceeded> · <MaxLabelsExceeded>
-				#           @option option [String] :MailDate (Required)
-				#           - Date of mailing/Carrier Pickup. This denotes date mail to be tendered to Postal Service. YYYYMMDD format. Example: <MailDate>20060103</MailDate>
-				#           @option option [String] :MailTime (Required)
-				#           - Time of mailing/Carrier Pickup. This is an approximation. This denotes time of mail to be tendered to Postal Service. HHMMSS (24 hour) format. Example: <MailTime>143000</MailTime>
-				#           @option option [String] :EntryFacility (Required)
-				#           - ZIP Code of Postal Service facility. Populate/required only if different from <FromZip5>. Example: <EntryFacility>07067</EntryFacility>
-				#           @option option [String] :ImageType (Required)
-				#           - The form image format desired. Enter one of the valid entries: Example: <ImageType>TIF</ImageType>
-				#           @option option [String] :CustomerRefNo (Optional)
-				#           - Arbitrary number for customers own tracking or inventory systems, does not print to form or manifest with Product Tracking. May be any combination of alpha and numeric characters, up to a maximum of 30. Example: <CustomerRefNo>123456</CustomerRefNo>
-				#           @option option [Boolean] :CarrierPickup (Optional)
-				#           - FOR FUTURE USE.
-
-				#
-				# @see 
-				def scan(options = {})
+				# @param [Hash] options
+				# @option options [required, Hash] scan_request API=SCAN
+				#  * *:option* (Hash) — Groups form information
+				#    * *:form* (String) — Designates desired label option selected by customer. Enter one of the valid entries: ‘3152’ generates PS Form 3152. ‘5630’ generates PS Form 5630. For example: <Form>3152</Form>
+				#    * *:from_name* (required, String) — Name of sender. Example: <FromName>Joe Smith</FromName>
+				#    * *:from_firm* (String) — Company name. Example: <FromFirm>ABC Corp.</FromFirm>
+				#    * *:from_address1* (String) — From address line 1. Denote apartment or suite number. Example: <FromAddress1>Apt. 3C</FromAddress1>
+				#    * *:from_address2* (required, String) — From address line 2. Denote street/structure number. Example: <FromAddress2>475 L’Enfant Plaza SW</FromAddress2>
+				#    * *:from_city* (required, String) — From city. Example: <FromCity>Greenbelt</FromCity>
+				#    * *:from_state* (required, String) — From state. Example: <FromState>MD</FromState>
+				#    * *:from_zip5* (required, String) — From ZIP Code. Must be a valid ZIP5 Code. Example: <FromZip5>20770</FromZip5>
+				#    * *:from_zip4* (String) — From ZIP Code+4. Example: <FromZip4>1234</FromZip4>
+				#    * *:shipment* (Hash) — Groups shipment information
+				#      * *:package_detail* (Hash) — Groups package detail information
+				#        * *:pkg_barcode* (required, String) — Individual package barcodes. Example: <PkgBarcode>42020260910180521390702413570 </PkgBarcode> Note: The SCAN API can contain no more than 1,000 package barcodes in a single request. If exceeded, 'Total PackageDetail items exceeded 1000.’ error will return”
+				#        * *:special_service* (Hash) — FOR FUTURE USE. Groups extra service information.
+				#          * *:spc_serv_code* (required, String) — FOR FUTURE USE. If present, must be <SpcServFee>. From Extra Service Code table. Example: <SpcServCode>01</SpcServCode>
+				#          * *:spc_serv_fee* (required, String) — FOR FUTURE USE. Fee for Extra Service. Example: <SpcServFee>00275</SpcServFee>
+				#          * *:e_mail* (String) — FOR FUTURE USE. Email address of acceptance scan event recipient. Example: <EMail>john.smith@abc.com</EMail>
+				#          * *:close_manifest* (Boolean) — Used to include all labels for the submitted UserID. There are two values: “ALL” will close all labels for the submitted USERID. “SHIPDATE” will close all the labels for the submitted USERID that have the <Shipdate> tag matching the value in the <MailDate> tag. Note: When <CloseManifest> is indicated in the request, the following two response fields are eligible to return if conditions are met: · <MaxPackagesExceeded> · <MaxLabelsExceeded>
+				#          * *:mail_date* (required, String) — Date of mailing/Carrier Pickup. This denotes date mail to be tendered to Postal Service. YYYYMMDD format. Example: <MailDate>20060103</MailDate>
+				#          * *:mail_time* (required, String) — Time of mailing/Carrier Pickup. This is an approximation. This denotes time of mail to be tendered to Postal Service. HHMMSS (24 hour) format. Example: <MailTime>143000</MailTime>
+				#          * *:entry_facility* (required, String) — ZIP Code of Postal Service facility. Populate/required only if different from <FromZip5>. Example: <EntryFacility>07067</EntryFacility>
+				#          * *:image_type* (required, String) — The form image format desired. Enter one of the valid entries: Example: <ImageType>TIF</ImageType>
+				#          * *:customer_ref_no* (String) — Arbitrary number for customers own tracking or inventory systems, does not print to form or manifest with Product Tracking. May be any combination of alpha and numeric characters, up to a maximum of 30. Example: <CustomerRefNo>123456</CustomerRefNo>
+				#          * *:carrier_pickup* (Boolean) — FOR FUTURE USE.
+def scan(options = {})
 					throw ArgumentError.new('Required arguments :scan_request missing') if options[:scan_request].nil?
 
 					request = build_request(:scan, options)

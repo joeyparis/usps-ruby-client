@@ -6,9 +6,6 @@ module Usps
 	module Api
 		module Endpoints
 			module PTSEmail
-				#
-				# Track and Confirm by Email API
-				#
 				# The Track and Confirm by
 				# Email API allows the customer to submit their email address to be notified of
 				# current or future tracking activity. When you request access for this API,
@@ -16,23 +13,20 @@ module Usps
 				# utilizing this API. A mailer identification number (MID) is a 6 or 9-digit
 				# number assigned to a customer through the USPS Business Customer Gateway (BCG).
 				# Please refer to the following links for help:
-				#
-				# @option option [(Alias)] :PTSEmailRequest (Required)
-				#   @option option [String] :TrackId (Required)
-				#   @option option [String] :ClientIp (Optional)
-				#   @option option [String] :SourceId (Optional)
-				#   @option option [Integer] :MpSuffix (Required)
-				#   @option option [String] :MpDate (Required)
-				#   @option option [Request Type] :RequestType (Optional)
-				#   @option option [String] :FirstName (Optional)
-				#   @option option [String] :LastName (Optional)
-				#   @option option [String] :Email1 (Required)
-				#   @option option [String] :Email2 (Optional)
-				#   @option option [String] :Email3 (Optional)
-
-				#
-				# @see 
-				def pts_email(options = {})
+				# @param [Hash] options
+				# @option options [required, Hash] pts_email_request 
+				#  * *:track_id* (required, String)
+				#  * *:client_ip* (String)
+				#  * *:source_id* (String)
+				#  * *:mp_suffix* (required, Integer)
+				#  * *:mp_date* (required, String)
+				#  * *:request_type* (Request Type)
+				#  * *:first_name* (String)
+				#  * *:last_name* (String)
+				#  * *:email1* (required, String)
+				#  * *:email2* (String)
+				#  * *:email3* (String)
+def pts_email(options = {})
 					throw ArgumentError.new('Required arguments :pts_email_request missing') if options[:pts_email_request].nil?
 					throw ArgumentError.new('Required arguments :pts_email_request, :track_id missing') if options[:pts_email_request][:track_id].nil?
 					throw ArgumentError.new('Required arguments :pts_email_request, :mp_suffix missing') if options[:pts_email_request][:mp_suffix].nil?

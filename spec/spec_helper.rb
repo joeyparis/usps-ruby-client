@@ -10,6 +10,7 @@ Usps.configure do |config|
 end
 
 puts `rake usps:api:update`
+puts `yard doc`
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
