@@ -24,3 +24,5 @@ Style/Documentation:
   Enabled: false
 Style/ModuleFunction:
   Enabled: false
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: comma

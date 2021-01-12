@@ -11,9 +11,9 @@ RSpec.describe Usps::Api::Endpoints::CityStateLookup do
       response = client.city_state_lookup({
                                             city_state_lookup_request: {
                                               zip_code: {
-                                                zip5: 33_626
-                                              }
-                                            }
+                                                zip5: 33_626,
+                                              },
+                                            },
                                           })
 
       expect(response).to eq({ 'CityStateLookupResponse' => { 'ZipCode' => { 'City' => 'TAMPA',

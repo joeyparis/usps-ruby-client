@@ -13,9 +13,9 @@ RSpec.describe Usps::Api::Endpoints::ZipCodeLookup do
                                             address: {
                                               city: 'Tampa',
                                               state: 'Florida',
-                                              address2: '12620 Race Track Rd'
-                                            }
-                                          }
+                                              address2: '12620 Race Track Rd',
+                                            },
+                                          },
                                         })
 
       expect(response).to eq({ 'ZipCodeLookupResponse' => { 'Address' => {

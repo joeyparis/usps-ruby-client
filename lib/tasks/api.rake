@@ -43,7 +43,7 @@ namespace :usps do
             type: option['Type'],
             name: option['Tag Name'].split('/').pop.strip,
             required: option['Occurs'] == 'Required',
-            description: option['Description']
+            description: option['Description'],
           }
         end.compact
       end
@@ -113,7 +113,7 @@ namespace :usps do
             major: major,
             minor: minor,
             tiny: tiny,
-            title: title
+            title: title,
           }
 
           table_of_contents[major] ||= []
@@ -221,7 +221,7 @@ namespace :usps do
 
           @endpoint_files << {
             file: api[:group].underscore,
-            module: api[:group].camelize
+            module: api[:group].camelize,
           }
           # rescue => e
           # 	@failed_methods << {

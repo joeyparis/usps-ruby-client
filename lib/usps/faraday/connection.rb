@@ -6,7 +6,7 @@ module Usps
 
       def connection
         options = {
-          headers: { 'Accept' => 'application/json; charset=utf-8' }
+          headers: { 'Accept' => 'application/json; charset=utf-8' },
         }
 
         options[:headers]['User-Agent'] = user_agent if user_agent
