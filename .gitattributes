@@ -1,0 +1,2 @@
+lib/data/api/* linguist-vendored
+lib/usps/api/templates/*.erb linguist-language=Ruby
