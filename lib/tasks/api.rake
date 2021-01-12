@@ -24,12 +24,8 @@ namespace :usps do
         rows.map do |row|
           row_data = {}
           columns.each_with_index do |k, i|
-            if row[i].is_a? String
-              row_data[k.to_s.gsub(/[[:space:]]+/, ' ').strip] =
-                row[i].to_s.gsub(/[[:space:]]+/, ' ').strip
-            else
-              row_data[k.to_s.gsub(/[[:space:]]+/, ' ').strip] = row[i]
-            end
+            row_data[k.to_s.gsub(/[[:space:]]+/, ' ').strip] =
+              row[i].is_a? String ? row[i].to_s.gsub(/[[:space:]]+/, ' ').strip : row[i]
           end
           row_data
         end
@@ -126,17 +122,15 @@ namespace :usps do
           section_data = {}
           section.each do |subsection|
             header_node = doc.search("a[name=#{subsection[:anchor]}]")[0].parent
-            if header_node.content.blank? && header_node.next_element
-              header_node = header_node.next_element
-            end
+            header_node = header_node.next_element if header_node.content.blank? && header_node.next_element
 
-            if header_node.next_element && header_node.next_element.content.present?
-              content_node = header_node.next_element
-            elsif header_node.parent.next_element && header_node.parent.next_element.content.present?
-              content_node = header_node.parent.next_element
-            else
-              content_node = header_node.parent.parent.next_element
-            end
+            content_node = if header_node.next_element && header_node.next_element.content.present?
+                             header_node.next_element
+                           elsif header_node.parent.next_element && header_node.parent.next_element.content.present?
+                             header_node.parent.next_element
+                           else
+                             header_node.parent.parent.next_element
+                           end
             next unless content_node # For section 1
 
             section_data[:link] = subsection[:link]

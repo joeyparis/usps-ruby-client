@@ -9,18 +9,26 @@ RSpec.describe Usps::Api::Endpoints::ZipCodeLookup do
   context 'zip_code_lookup' do
     it 'return zip code for address' do
       response = client.zip_code_lookup({
-                                          zip_code_lookup_request: {
-                                            address: {
-                                              city: 'Tampa',
-                                              state: 'Florida',
-                                              address2: '12620 Race Track Rd',
-                                            },
-                                          },
-                                        })
+        zip_code_lookup_request: {
+          address: {
+            city: 'Tampa',
+            state: 'Florida',
+            address2: '12620 Race Track Rd',
+          },
+        },
+      })
 
-      expect(response).to eq({ 'ZipCodeLookupResponse' => { 'Address' => {
-                               'Address2' => '12620 RACE TRACK RD', 'City' => 'TAMPA', 'State' => 'FL', 'Zip4' => '1300', 'Zip5' => '33626'
-                             } } })
+      expect(response).to eq({
+        'ZipCodeLookupResponse' => {
+          'Address' => {
+            'Address2' => '12620 RACE TRACK RD',
+            'City' => 'TAMPA',
+            'State' => 'FL',
+            'Zip4' => '1300',
+            'Zip5' => '33626',
+          },
+        },
+      })
     end
   end
 end

@@ -14,12 +14,25 @@ AllCops:
     - spec/usps/api/endpoints/* # Auto-generated
 Layout/EmptyLineAfterMagicComment:
   Enabled: false
+Layout/FirstArrayElementIndentation:
+  EnforcedStyle: consistent
+Layout/FirstArrayElementLineBreak:
+  Enabled: true
+Layout/FirstHashElementIndentation:
+  EnforcedStyle: consistent
+Layout/FirstHashElementLineBreak:
+  Enabled: true
+Layout/HashAlignment:
+  EnforcedColonStyle: key
+  EnforcedRocketStyle: key
+# Layout/IndentationStyle:
+#   EnforcedStyle: tabs
 Metrics/BlockLength:
   Max: 250
 Metrics/ClassLength:
   Max: 250
 Metrics/LineLength:
-  Max: 100
+  Max: 120
 Style/Documentation:
   Enabled: false
 Style/ModuleFunction:
