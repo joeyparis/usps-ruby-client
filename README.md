@@ -61,7 +61,7 @@ After checking out the repo, run `bin/setup` to install dependencies. Then, run 
 
 ### Updating the auto-generated methods
 
-Because the USPS website does not allow scripts to make requests against their website, you must [download the API User Guide HTML files manually](https://www.usps.com/business/web-tools-apis/documentation-updates.htm). I recommend right-clicking the **HTM** and selecting *Save Link As...* to prevent any browser extensions from injecting their code and breaking the parsing.
+Because the USPS website does not allow scripts to make requests against their website, you must [download the API User Guide HTML files manually](https://www.usps.com/business/web-tools-apis/documentation-updates.htm). I recommend right-clicking the **HTM** link and selecting *Save Link As...* to prevent any browser extensions from injecting their code and breaking the parsing.
 
 Place just the `.htm` files in `lib/data/api` (and remove any that may no longer be active) and run `rake usps:api:update`. This task will recreate all the appropriate methods and some basic spec tests.
 
