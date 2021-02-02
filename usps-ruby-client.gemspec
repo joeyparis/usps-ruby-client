@@ -31,8 +31,8 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'activesupport', '~> 6.1'
   spec.add_dependency 'builder', '~> 3.2'
-  spec.add_dependency 'faraday', '~> 0.17'
-  spec.add_dependency 'faraday_middleware', '~> 0.14'
+  spec.add_dependency 'faraday', '~> 1'
+  spec.add_dependency 'faraday_middleware', '~> 1'
   spec.add_dependency 'multi_xml', '~> 0.6'
   spec.add_development_dependency 'amazing_print', '~> 1.2'
   spec.add_development_dependency 'erubis', '~> 2.7'
