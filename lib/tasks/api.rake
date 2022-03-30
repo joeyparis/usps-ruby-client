@@ -33,7 +33,6 @@ namespace :usps do
 
       def standardize_table_hash_array(arr)
         arr.map do |option|
-
           next if option['Tag Name'].blank? || option['Tag Name'].split('/').pop.strip.casecmp('userid').zero?
 
           {
@@ -232,7 +231,7 @@ namespace :usps do
       Dir.glob('lib/data/api/*.html').each do |f|
         ap f
         # begin
-          parse_doc(f)
+        parse_doc(f)
         # rescue => e
         # 	failed_docs << f
         # end
