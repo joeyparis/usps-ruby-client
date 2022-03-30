@@ -16,6 +16,7 @@ require_relative 'endpoints/pts_rre'
 require_relative 'endpoints/ptst_pod'
 require_relative 'endpoints/rate_v4'
 require_relative 'endpoints/scan'
+require_relative 'endpoints/sunday_holiday_availability'
 require_relative 'endpoints/track_v2'
 require_relative 'endpoints/usps_returns_label'
 require_relative 'endpoints/verify'
@@ -39,6 +40,7 @@ module Usps
       include PTSTPod
       include RateV4
       include SCAN
+      include SundayHolidayAvailability
       include TrackV2
       include USPSReturnsLabel
       include Verify
@@ -60,6 +62,7 @@ module Usps
         ptst_pod: 'PTSTPod',
         rate_v4: 'RateV4',
         scan: 'SCAN',
+        sunday_holiday_availability: 'SundayHolidayAvailability',
         track_v2: 'TrackV2',
         usps_returns_label: 'USPSReturnsLabel',
         verify: 'Verify',

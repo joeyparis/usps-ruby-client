@@ -26,7 +26,7 @@ module Usps
 				#  * *:email1* (required, String)
 				#  * *:email2* (String)
 				#  * *:email3* (String)
-def pts_email(options = {})
+				def pts_email(options = {})
 					throw ArgumentError.new('Required arguments :pts_email_request missing') if options[:pts_email_request].nil?
 					throw ArgumentError.new('Required arguments :pts_email_request, :track_id missing') if options[:pts_email_request][:track_id].nil?
 					throw ArgumentError.new('Required arguments :pts_email_request, :mp_suffix missing') if options[:pts_email_request][:mp_suffix].nil?

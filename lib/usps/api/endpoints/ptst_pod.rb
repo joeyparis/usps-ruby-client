@@ -22,7 +22,7 @@ module Usps
 				#  * *:table_code* (required, String)
 				#  * *:client_ip* (String)
 				#  * *:source_id* (String)
-def ptst_pod(options = {})
+				def ptst_pod(options = {})
 					throw ArgumentError.new('Required arguments :ptst_pod_request missing') if options[:ptst_pod_request].nil?
 					throw ArgumentError.new('Required arguments :ptst_pod_request, :track_id missing') if options[:ptst_pod_request][:track_id].nil?
 					throw ArgumentError.new('Required arguments :ptst_pod_request, :mp_suffix missing') if options[:ptst_pod_request][:mp_suffix].nil?

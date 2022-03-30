@@ -31,7 +31,7 @@ module Usps
 				#    * *:package_location* (required, String) — Enter one of the following values: Note: "Other" requires information in the value for the <SpecialInstructions> tag. For example: <PackageLocation>Front Door</PackageLocation>
 				#    * *:special_instructions* (String) — Value Required when PackageLocation is “Other”. Only alpha, numeric, commas, periods, apostrophes, _, &, -, ( ), ?, #, / +, @ and space characters may be used. For example: <SpecialInstructions>Packages are behind the screen door.</SpecialInstructions>
 				#    * *:email_address* (String) — If provided, email notifications will be sent confirming package pickup, or request changes and cancellations. Maximum characters allowed: 50. For example: <EmailAddress>cpapple@email.com</EmailAddress>
-def carrier_pickup_schedule(options = {})
+				def carrier_pickup_schedule(options = {})
 					throw ArgumentError.new('Required arguments :carrier_pickup_schedule_request missing') if options[:carrier_pickup_schedule_request].nil?
 					throw ArgumentError.new('Required arguments :carrier_pickup_schedule_request, :first_name missing') if options[:carrier_pickup_schedule_request][:first_name].nil?
 					throw ArgumentError.new('Required arguments :carrier_pickup_schedule_request, :last_name missing') if options[:carrier_pickup_schedule_request][:last_name].nil?

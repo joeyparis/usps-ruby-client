@@ -36,7 +36,7 @@ module Usps
 				#          * *:image_type* (required, String) — The form image format desired. Enter one of the valid entries: Example: <ImageType>TIF</ImageType>
 				#          * *:customer_ref_no* (String) — Arbitrary number for customers own tracking or inventory systems, does not print to form or manifest with Product Tracking. May be any combination of alpha and numeric characters, up to a maximum of 30. Example: <CustomerRefNo>123456</CustomerRefNo>
 				#          * *:carrier_pickup* (Boolean) — FOR FUTURE USE.
-def scan(options = {})
+				def scan(options = {})
 					throw ArgumentError.new('Required arguments :scan_request missing') if options[:scan_request].nil?
 
 					request = build_request(:scan, options)

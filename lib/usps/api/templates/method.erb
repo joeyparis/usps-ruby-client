@@ -13,7 +13,7 @@ module Usps
 				# @option options [required, Hash] <%= data[:request_descriptions].first[1][:name].underscore %> <%= data[:request_descriptions].first[1][:description] %>
 				<% data[:request_descriptions].each do |option_name, option| %>
 					<% option[:children].each do |child_option_name, child_option| %>
-<%= Erubis::Eruby.new(File.read('lib/usps/api/templates/_options.erb')).result(option: child_option, parents: [], indentation: 0, static_indentation: 3) %><% end %><% end %>def <%= data[:group].underscore %>(options = {})
+<%= Erubis::Eruby.new(File.read('lib/usps/api/templates/_options.erb')).result(option: child_option, parents: [], indentation: 0, static_indentation: 3) %><% end %><% end %>				def <%= data[:group].underscore %>(options = {})
 					<% data[:request_descriptions].select{|n,o| o[:required]}.each do |option_name, option| %>
 	<%= Erubis::Eruby.new(File.read('lib/usps/api/templates/_throw_argument_error.erb')).result(option: option, parents: [], indentation: 3) %>
 					<% end %>

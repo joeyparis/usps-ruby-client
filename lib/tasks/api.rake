@@ -33,7 +33,8 @@ namespace :usps do
 
       def standardize_table_hash_array(arr)
         arr.map do |option|
-          next if option['Tag Name'].split('/').pop.strip.casecmp('userid').zero?
+
+          next if option['Tag Name'].blank? || option['Tag Name'].split('/').pop.strip.casecmp('userid').zero?
 
           {
             type: option['Type'],
@@ -163,7 +164,8 @@ namespace :usps do
                 #{title}
                 #{xml}
               XML
-            elsif subsection[:title] == 'Response Descriptions' || subsection[:title] == 'Request Descriptions'
+            elsif subsection[:title] == 'Response Descriptions' || subsection[:title].match?(/Request (Tag )*Descriptions/) # Some documents have Tag, some don't
+              subsection[:title] = 'Request Descriptions' if subsection[:title] == 'Request Tag Descriptions'
               columns, *rows = content_node.search('tr').map do |tr|
                 next if tr.ancestors('table').length > 1
 
@@ -227,10 +229,10 @@ namespace :usps do
       end
 
       failed_docs = []
-      Dir.glob('lib/data/api/*.htm').each do |f|
+      Dir.glob('lib/data/api/*.html').each do |f|
         ap f
         # begin
-        parse_doc(f)
+          parse_doc(f)
         # rescue => e
         # 	failed_docs << f
         # end

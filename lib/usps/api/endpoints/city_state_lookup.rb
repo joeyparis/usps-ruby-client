@@ -12,7 +12,7 @@ module Usps
 				# @option options [required, Hash] city_state_lookup_request API= CityStateLookupRequest
 				#  * *:zip_code* (required, Hash) — 
 				#    * *:zip5* (required, Integer) — 
-def city_state_lookup(options = {})
+				def city_state_lookup(options = {})
 					throw ArgumentError.new('Required arguments :city_state_lookup_request missing') if options[:city_state_lookup_request].nil?
 					throw ArgumentError.new('Required arguments :city_state_lookup_request, :zip_code missing') if options[:city_state_lookup_request][:zip_code].nil?
 					throw ArgumentError.new('Required arguments :city_state_lookup_request, :zip_code, :zip5 missing') if options[:city_state_lookup_request][:zip_code][:zip5].nil?

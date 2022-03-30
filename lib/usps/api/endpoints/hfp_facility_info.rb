@@ -24,7 +24,7 @@ module Usps
 				#  * *:pickup_zip* (required, String) — Either City/State or ZIP code must be specified. When PickupZIP provided without PickupZIP4, all pickup facilities that service that ZIP code are returned. For example: <PickupZIP>02111</PickupZIP>
 				#  * *:pickup_zip4* (required, String) — If PickupZIP is specified, then PickupZIP4 may also be specified. This will match to a single pickup facility with the given nine-digit ZIP code. For example: <PickupZIP4>9998</PickupZIP4>
 				#  * *:service* (String) — For future use. May be omitted.
-def hfp_facility_info(options = {})
+				def hfp_facility_info(options = {})
 					throw ArgumentError.new('Required arguments :hfp_facility_info_request missing') if options[:hfp_facility_info_request].nil?
 					throw ArgumentError.new('Required arguments :hfp_facility_info_request, :pickup_city missing') if options[:hfp_facility_info_request][:pickup_city].nil?
 					throw ArgumentError.new('Required arguments :hfp_facility_info_request, :pickup_state missing') if options[:hfp_facility_info_request][:pickup_state].nil?

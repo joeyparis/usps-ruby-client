@@ -20,7 +20,7 @@ module Usps
 				#    * *:state* (String) — Two-character state code of the destination address.
 				#    * *:zip5* (String) — Destination 5-digit ZIP Code. Must be 5-digits. Numeric values (0-9) only. If International, all zeroes.
 				#    * *:zip4* (String) — Destination ZIP+4. Numeric values (0-9) only. If International, all zeroes. Default to spaces if not available.
-def zip_code_lookup(options = {})
+				def zip_code_lookup(options = {})
 					throw ArgumentError.new('Required arguments :zip_code_lookup_request missing') if options[:zip_code_lookup_request].nil?
 
 					request = build_request(:zip_code_lookup, options)

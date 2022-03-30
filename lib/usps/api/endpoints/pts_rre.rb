@@ -21,7 +21,7 @@ module Usps
 				#  * *:email3* (String)
 				#  * *:table_code* (required, String)
 				#  * *:cust_reg_id* (String)
-def pts_rre(options = {})
+				def pts_rre(options = {})
 					throw ArgumentError.new('Required arguments :pts_rre_request missing') if options[:pts_rre_request].nil?
 					throw ArgumentError.new('Required arguments :pts_rre_request, :track_id missing') if options[:pts_rre_request][:track_id].nil?
 					throw ArgumentError.new('Required arguments :pts_rre_request, :mp_suffix missing') if options[:pts_rre_request][:mp_suffix].nil?

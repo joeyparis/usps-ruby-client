@@ -18,7 +18,7 @@ module Usps
 				#    * *:urbanization* (String) — Urbanization. For Puerto Rico addresses only.
 				#    * *:zip5* (String) — Destination 5-digit ZIP Code. Numeric values (0-9) only. If International, all zeroes.
 				#    * *:zip4* (String) — Destination ZIP+4 Numeric values (0-9) only. If International, all zeroes. Default to spaces if not available.
-def verify(options = {})
+				def verify(options = {})
 					throw ArgumentError.new('Required arguments :address_validate_request missing') if options[:address_validate_request].nil?
 					throw ArgumentError.new('Required arguments :address_validate_request, :revision missing') if options[:address_validate_request][:revision].nil?
 					throw ArgumentError.new('Required arguments :address_validate_request, :address missing') if options[:address_validate_request][:address].nil?

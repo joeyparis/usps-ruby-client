@@ -36,7 +36,7 @@ module Usps
 				#  * *:verify_address* (Boolean)
 				#  * *:table_code* (required, String)
 				#  * *:cust_reg_id* (String)
-def pts_pod(options = {})
+				def pts_pod(options = {})
 					request = build_request(:pts_pod, options)
 					get('https://secure.shippingapis.com/ShippingAPI.dll', {
 						API: 'PTSPod',

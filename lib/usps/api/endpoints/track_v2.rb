@@ -21,7 +21,7 @@ module Usps
 				#  * *:track_id* (required, String)
 				#  * *:destination_zip_code* (String)
 				#  * *:mailing_date* (String)
-def track_v2(options = {})
+				def track_v2(options = {})
 					throw ArgumentError.new('Required arguments :track_field_request missing') if options[:track_field_request].nil?
 					throw ArgumentError.new('Required arguments :track_field_request, :revision missing') if options[:track_field_request][:revision].nil?
 					throw ArgumentError.new('Required arguments :track_field_request, :source_id missing') if options[:track_field_request][:source_id].nil?
