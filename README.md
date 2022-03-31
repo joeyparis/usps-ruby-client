@@ -27,7 +27,7 @@ Or install it yourself as:
 ## Usage
 
 ```
-client = Usps.client.new({
+client = Usps::Client.new({
     user_id: ENV['USPS_USER_ID'] # The user_id will default to `ENV['USPS_USER_ID']` so this is technically unnecessary.
 })
 
