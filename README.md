@@ -32,8 +32,19 @@ packages = [
         :pounds => 78,
         :ounces => 234,
         :machinable => true
-    },
+    }
 ]
+
+usps = Usps::Client.new({
+    user_id: Rails.application.credentials.usps[:username]
+})
+                    
+rates = usps.rate_v4({
+    :rate_v4_request => {
+        :revision => 2,
+        :packages => packages
+    }
+})
 ```
 USPS Ruby Client
 =================
