@@ -1,3 +1,51 @@
+About this fork:
+=================
+I created this fork to update the ratev4 interface to be more closely aligned with the specifications provided by the usps. Machinable is a required field and takes a boolean value as is an ID for each package which can take an int or a string. Support for multiple packages are also now supported and can be passed to the gem as an array of hashes of the same format as before. 
+
+##Usage:
+```
+packages = [
+    {
+        :id => 0,
+        :service => "ONLINE",
+        :zip_origination => "12345",
+        :zip_destination => 67890,
+        :container => '',
+        :width => 1,
+        :length => 2,
+        :height => 3,
+        :value => 34,
+        :pounds => 67,
+        :ounces => 3,
+        :machinable => true
+    },
+    {
+        :id => 1,
+        :service => "ONLINE",
+        :zip_origination => "12345",
+        :zip_destination => 67890,
+        :container => '',
+        :width => 12,
+        :length => 54,
+        :height => 234,
+        :value => 123,
+        :pounds => 78,
+        :ounces => 234,
+        :machinable => true
+    }
+]
+
+usps = Usps::Client.new({
+    user_id: Rails.application.credentials.usps[:username]
+})
+                    
+rates = usps.rate_v4({
+    :rate_v4_request => {
+        :revision => 2,
+        :packages => packages
+    }
+})
+```
 USPS Ruby Client
 =================
 [![Build Status](https://travis-ci.com/joeyparis/usps-ruby-client.svg?branch=master)](https://travis-ci.com/joeyparis/usps-ruby-client)
